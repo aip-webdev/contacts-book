@@ -1,22 +1,18 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {IUser} from "../../../../types/global";
 import {AuthForm} from "../../Components/AuthForm";
 import {login} from "../../../context/actions";
 import {useAppStore} from "../../../hooks/useAppStore";
 import {SignInBtnGroup} from "../../Components/SignInBtnGroup";
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 
-export function SignInPage() {
+export const SignInPage = () => {
     const [{usersData: {users, loading, error}, isAuth: isAuth}, dispatch] = useAppStore();
     const navigate = useNavigate();
-    useEffect(() => {
-        if (isAuth) {
-            navigate("/")
-        }
-    }, [])
 
-    function auth(user: IUser) {
+    const auth = (user: IUser) => {
         if (loading || error) return;
+
         let usersArr = Array();
         if (users) {
             usersArr = Array.of(...users)
@@ -31,13 +27,14 @@ export function SignInPage() {
             return {type: 'mailPassword', message: 'Wrong password'}
         } else {
             dispatch(login())
-            navigate("/")
+            navigate("/profile")
         }
     }
 
     return (
+        isAuth ? <Navigate to='/profile' /> :
         <AuthForm authUser={auth}>
             <SignInBtnGroup/>
         </AuthForm>
-    );
+    )
 }

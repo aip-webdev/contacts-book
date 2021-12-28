@@ -2,7 +2,7 @@ import {useNavigate} from "react-router-dom";
 import {useAppStore} from "../../hooks/useAppStore";
 import React, {useEffect} from "react";
 
-export function RequiredAuth({ children }: { children: JSX.Element }) {
+export const RequiredAuth = ({ children }: { children: JSX.Element }) => {
     const [state] = useAppStore();
     const navigate = useNavigate();
     useEffect(() => {
@@ -11,5 +11,5 @@ export function RequiredAuth({ children }: { children: JSX.Element }) {
         }
     }, [])
 
-    return children;
+    return children
 }

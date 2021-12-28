@@ -1,11 +1,12 @@
 const colors = {
-  red: '#F9423A',
-  lime: '#D0DF00',
-  blue: '#00A7B5',
-  darkGray: '#3B3A3C',
-  mdGray: '#4f4e4e',
-  gray: '#898B8D',
-  gallery: '#EDEDED'
+  pineLight: '#598392',
+  pine: '#124559',
+  pine07: 'rgba(18, 69, 89, 0.7)',
+  darkBlue: '#00042b',
+  pistachio: '#aec3b0',
+  pistachioL: '#eff8d4',
+  pistachioLT: 'hsl(80,15%,77%)',
+  black: 'rgba(0, 0, 0, 0.6)'
 }
 
 export default colors;

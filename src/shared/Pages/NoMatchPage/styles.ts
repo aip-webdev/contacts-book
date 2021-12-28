@@ -1,10 +1,13 @@
-const styles = {
+import colors from "../../../utils/enums/colors";
+import {makeStyles} from "@mui/styles";
+
+const useStyles = makeStyles( {
   container: {
-    color: 'rgba(0, 0, 0, 0.6)',
+    color: colors.black,
     display: 'grid',
     placeItems: 'center',
     height: '100vh',
   },
-}
+})
 
-export default styles;
+export default useStyles;

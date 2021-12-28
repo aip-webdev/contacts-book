@@ -1,12 +1,11 @@
-import {addStringId} from "../../../utils/react/generateRandomIndex";
-import {validateEmail} from "../../../utils/validateEmail";
 import React, {ChangeEvent, useEffect, useState} from "react";
-import {IUser} from "../../../../types/global";
 import Container from "@mui/material/Container";
 import {Box, TextField} from "@mui/material";
-import styles from "./styles";
+import useStyles from "./styles";
 import {props} from "ramda";
-
+import {IUser} from "../../../../types/global";
+import {addStringId} from "../../../utils/react/generateRandomIndex";
+import {validateEmail} from "../../../utils/validateEmail";
 
 export interface ISignBtnProps {
     inputError?: boolean,
@@ -20,6 +19,7 @@ interface IAuthProps {
 }
 
 export const AuthForm = ({children, authUser}: IAuthProps) => {
+    const classes = useStyles()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [{errorMail, errorMailText}, setErrorMail] = useState({errorMail: false, errorMailText: ''})
@@ -106,23 +106,16 @@ export const AuthForm = ({children, authUser}: IAuthProps) => {
     }, [children, errorMail && errorPass, user])
 
     return (
-        <Container
-            // @ts-ignore
-            sx={styles.container}>
-            <Box
-                // @ts-ignore
-                sx={styles.box}
-                component='form'
-                autoComplete="off"
-            >
+        <Container className={classes.container}>
+            <Box className={classes.box} component='form' autoComplete="off">
                 <TextField
                     error={errorMail}
-                    // @ts-ignore
-                    sx={styles.input}
+                    className={classes.input}
                     id="outlined-required"
                     label="E-mail"
                     type="email"
-                    autoComplete="username"
+                    autoComplete="email"
+                    variant='outlined'
                     helperText={errorMailText}
                     value={email}
                     onChange={(e) => handleChangeLogin(e)}
@@ -130,8 +123,7 @@ export const AuthForm = ({children, authUser}: IAuthProps) => {
 
                 <TextField
                     error={errorPass}
-                    // @ts-ignore
-                    sx={styles.input}
+                    className={classes.input}
                     id="outlined-password-input"
                     label="Password"
                     type="password"

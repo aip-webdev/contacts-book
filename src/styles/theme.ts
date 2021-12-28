@@ -1,12 +1,15 @@
 import { createTheme } from "@mui/material/styles";
+import colors from "../utils/enums/colors";
 
 const theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          backgroundColor: '#e1f0ff',
-        }
+          fontWeight: '400',
+          color: colors.pistachioLT,
+          backgroundColor: colors.pineLight,
+        },
       }
     }
   }

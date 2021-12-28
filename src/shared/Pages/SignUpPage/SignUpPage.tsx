@@ -1,22 +1,22 @@
 import React, {useEffect} from 'react';
 import {useAppStore} from "../../../hooks/useAppStore";
-import {IUser, IUsersData} from "../../../../types/global";
 import {AuthForm} from "../../Components/AuthForm";
-import {createNewUser} from "../../../context/actions";
 import {SignUpBtnGroup} from "../../Components/SignUpBtnGroup";
-import {useNavigate} from "react-router-dom";
+import {createNewUser} from "../../../context/actions";
+import {Navigate, useNavigate} from "react-router-dom";
+import {IUser} from "../../../../types/global";
 
-export function SignUpPage() {
+export const SignUpPage = () => {
     const [{usersData: {users, loading, error}, isAuth: isAuth}, dispatch] = useAppStore();
     const navigate = useNavigate();
 
     useEffect(() => {
         if (isAuth) {
-            navigate("/")
+            navigate("/profile")
         }
     }, [])
 
-    function createUser (user: IUser) {
+    const createUser = (user: IUser) => {
         if (loading || error) return;
         try {
             let usersArr = Array();
@@ -27,15 +27,16 @@ export function SignUpPage() {
             if (duplicate.length > 0) return {type: 'mailError', message:'An account with this address has already been registered'};
 
             dispatch(createNewUser(user))
-            navigate("/")
+            navigate("/profile")
         } catch (e) {
             console.log(e)
         }
-    }
+    };
 
     return (
+        isAuth ? <Navigate to='/profile' /> :
         <AuthForm authUser={createUser}>
             <SignUpBtnGroup />
         </AuthForm>
-    );
+    )
 }
