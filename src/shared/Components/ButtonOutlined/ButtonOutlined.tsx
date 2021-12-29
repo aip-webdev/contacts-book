@@ -1,6 +1,7 @@
 import React from 'react';
 import useStyles from "./styles";
 import {Button} from "@mui/material";
+import {useMediaSize} from "../../../hooks/useMediaSize";
 
 interface IButtonOutlined {
     btnClassName?: any
@@ -9,7 +10,8 @@ interface IButtonOutlined {
     btnIcon?: any
 }
 
-export function ButtonOutlined(props: IButtonOutlined) {
+export const ButtonOutlined = (props: IButtonOutlined) => {
+    const {isSm} = useMediaSize();
     const classes = useStyles()
     const {btnIcon, onClick, text, btnClassName=classes.button} = props
 
@@ -20,7 +22,7 @@ export function ButtonOutlined(props: IButtonOutlined) {
             variant='outlined'
             endIcon={btnIcon}
         >
-            {text}
+            {!isSm && text}
         </Button>
     )
-}
+};

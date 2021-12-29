@@ -12,6 +12,7 @@ export const indexTemplate = (content) =>`
     </head>
     <body>
         <div id="root">${content}</div>
+        <div id="modal"></div>
         <script src="/static/client.js" type="application/javascript"></script>
     </body>
     </html>

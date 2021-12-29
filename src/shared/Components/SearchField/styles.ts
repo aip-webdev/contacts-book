@@ -3,9 +3,10 @@ import colors from "../../../utils/enums/colors";
 
 const useStyles = makeStyles( {
     formControl: {
-        width: '20vw',
+        minWidth: '140px',
         margin: '0',
-        position: 'relative'
+        position: 'relative',
+        marginRight: '40px',
     },
     textField: {
         '& .MuiInputLabel-root, .MuiOutlinedInput-root': {
