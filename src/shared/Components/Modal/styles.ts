@@ -25,11 +25,9 @@ const useStyles = makeStyles({
         padding: '45px 25px',
         position: 'relative',
         [theme.breakpoints.up('md')]: {
-            maxWidth: '1024px',
+            maxWidth: '100vw',
         },
-        @include
-        media -desktop
-{
-    maxWidth: '1540px',
-}
-}
+    }
+})
+
+export default useStyles;

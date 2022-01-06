@@ -3,7 +3,7 @@ import {makeStyles} from "@mui/styles";
 
 const useStyles = makeStyles( {
   container: {
-    color: colors.black,
+    color: colors.black06,
     display: 'grid',
     placeItems: 'center',
     height: '100vh',

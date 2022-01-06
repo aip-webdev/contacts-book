@@ -7,14 +7,14 @@ import {SignInBtnGroup} from "../../Components/SignInBtnGroup";
 import {Navigate, useNavigate} from "react-router-dom";
 
 export const SignInPage = () => {
-    const [{usersData: {users, loading, error}, isAuth: isAuth}, dispatch] = useAppStore();
+    const [{users, loading, error, isAuth: isAuth}, dispatch] = useAppStore();
     const navigate = useNavigate();
 
     const auth = (user: IUser) => {
         if (loading || error) return;
 
         let usersArr = Array();
-        if (users) {
+        if (!!users) {
             usersArr = Array.of(...users)
         }
         let filterUsersByEmail = usersArr.filter((someUser: IUser) => someUser.email === user.email);
@@ -26,13 +26,13 @@ export const SignInPage = () => {
         if (filterUsersByPassword.length === 0) {
             return {type: 'mailPassword', message: 'Wrong password'}
         } else {
-            dispatch(login())
-            navigate("/profile")
+            dispatch(login(filterUsersByPassword[0].id))
+            navigate("/contacts")
         }
     }
 
     return (
-        isAuth ? <Navigate to='/profile' /> :
+        isAuth ? <Navigate to='/contacts' /> :
         <AuthForm authUser={auth}>
             <SignInBtnGroup/>
         </AuthForm>

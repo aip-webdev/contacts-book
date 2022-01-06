@@ -8,12 +8,12 @@ export const indexTemplate = (content) =>`
         <meta name="theme-color" content="#000000"/>
         <link rel="apple-touch-icon" href="/img-src/logo192.png"/>
         <link rel="manifest" href="/img-src/manifest.json"/>
-        <title>Profile</title>
+        <title>Contacts</title>
     </head>
+    <script src="/static/client.js" type="application/javascript"></script>
     <body>
         <div id="root">${content}</div>
         <div id="modal"></div>
-        <script src="/static/client.js" type="application/javascript"></script>
     </body>
     </html>
 `;

@@ -5,16 +5,19 @@ import {IStateData, MyAction} from "../../types/global";
 // @ts-ignore
 let AppStateContext = React.createContext();
 // @ts-ignore
+
 const AppDispatchContext = React.createContext();
+
 
 function AppProvider({children}: { children: React.ReactNode}) {
     const initState: IStateData = {
-        usersData: {
-            users: [],
-            error: false,
-            loading: false
-        },
-        isAuth: false
+        users: [],
+        contacts: [],
+        error: false,
+        loading: false,
+        isAuth: false,
+        authUserId: '',
+        searchField: ''
     }
     const [state, dispatch] = React.useReducer(rootReducer, initState);
 

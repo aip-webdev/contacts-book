@@ -1,13 +1,13 @@
 import React from 'react';
 import {Box} from "@mui/material";
 import useStyles from "./styles";
-import {VerticalTabs} from "../../Components/VerticalTabs";
+import {ContactsTabs} from "../../Components/ContactsTabs";
 
-export const Contacts = () => {
+export const ContactsPage = () => {
     const classes = useStyles()
     return (
         <Box className={classes.box}>
-            <VerticalTabs />
+            <ContactsTabs />
         </Box>
     )
 }

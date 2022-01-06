@@ -43,6 +43,10 @@ const theme = createTheme({
             borderRadius: '3px',
             backgroundColor: colors.pine
           },
+          'a': {
+            textDecoration: "none",
+            color: 'rgba(18, 69, 89, 0.8)'
+          }
         },
       }
     }

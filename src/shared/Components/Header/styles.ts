@@ -3,41 +3,45 @@ import colors from "../../../utils/enums/colors";
 import theme from "../../../styles/theme";
 
 const useStyles = makeStyles({
-    appBar: {
+    '& .MuiPaper-root': {
         backgroundColor: colors.pine,
-        height: '6vh',
+        height: '7vh',
         position: 'fixed',
-        width: '100%',
+        width: '100vw',
+    },
+    appBar: {
+            backgroundColor: `${colors.pine} !important`,
+            height: '7vh',
+            position: 'fixed',
+            width: '100vw',
+
+    },
+    link: {
+        textDecoration: 'none',
     },
     toolbar: {
         height: 'inherit',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        minWidth: ' 320px',
-        maxWidth: '320px',
-        margin: '0 auto',
-        [theme.breakpoints.up('md')]: {
-            padding: '0',
-            minWidth: '640px',
-            maxWidth: '640px',
-        },
-        [theme.breakpoints.up('lg')]: {
-            minWidth: '1000px',
-            maxWidth: '1000px',
-        },
+        width: '100vw',
         [theme.breakpoints.up('xl')]: {
-            minWidth: '1400px',
-            maxWidth: '1400px',
-        }
+            width: '1400px',
+        },
     },
     title: {
         color: colors.pistachioLT,
-        fontSize: '1.35rem',
-        fontWeight: '500',
-        letterSpacing: '0.08em',
+        fontSize: '1.35rem !important',
+        fontWeight: '500 !important',
+        letterSpacing: '0.08em !important',
         minWidth: '20vw',
-        textAlign: 'center'
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        cursor: 'none',
+    },
+    title__icon: {
+        marginRight: '5px'
     }
 })
 

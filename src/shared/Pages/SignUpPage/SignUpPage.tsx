@@ -1,20 +1,15 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useAppStore} from "../../../hooks/useAppStore";
 import {AuthForm} from "../../Components/AuthForm";
 import {SignUpBtnGroup} from "../../Components/SignUpBtnGroup";
-import {createNewUser} from "../../../context/actions";
+import {addNewContactData, createNewUser, login} from "../../../context/actions";
 import {Navigate, useNavigate} from "react-router-dom";
-import {IUser} from "../../../../types/global";
+import {IContact, IUser} from "../../../../types/global";
+import {addStringId} from "../../../utils/react/generateRandomIndex";
 
 export const SignUpPage = () => {
-    const [{usersData: {users, loading, error}, isAuth: isAuth}, dispatch] = useAppStore();
+    const [{users, loading, error, isAuth: isAuth}, dispatch] = useAppStore();
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if (isAuth) {
-            navigate("/profile")
-        }
-    }, [])
 
     const createUser = (user: IUser) => {
         if (loading || error) return;
@@ -27,14 +22,25 @@ export const SignUpPage = () => {
             if (duplicate.length > 0) return {type: 'mailError', message:'An account with this address has already been registered'};
 
             dispatch(createNewUser(user))
-            navigate("/profile")
+            dispatch(addNewContactData({
+                userId:user.id,
+                contactsList: [addStringId({
+                    email:'some@gmail.com',
+                    name: 'Name',
+                    lastName: 'Lastname',
+                    tel: '88002000600',
+                    group: 'all'
+                }) as IContact],
+                contactsGroups: ['all'] }))
+            dispatch(login(user.id))
+            navigate("/contacts")
         } catch (e) {
             console.log(e)
         }
     };
 
     return (
-        isAuth ? <Navigate to='/profile' /> :
+        isAuth ? <Navigate to='/contacts' /> :
         <AuthForm authUser={createUser}>
             <SignUpBtnGroup />
         </AuthForm>

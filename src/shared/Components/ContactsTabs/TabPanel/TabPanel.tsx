@@ -1,6 +1,6 @@
 import React from 'react';
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import useStyles from './styles';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -10,8 +10,10 @@ interface TabPanelProps {
 
 export const TabPanel = (props: TabPanelProps) => {
   const { children, value, index, ...other } = props;
+  const classes = useStyles();
   return (
       <div
+          className={classes.tabPanel}
           role="tabpanel"
           hidden={value !== index}
           id={`vertical-tabpanel-${index}`}
@@ -19,8 +21,8 @@ export const TabPanel = (props: TabPanelProps) => {
           {...other}
       >
         {value === index && (
-            <Box sx={{ p: 3 }}>
-              <Typography>{children}</Typography>
+            <Box className={classes.box}>
+              {children}
             </Box>
         )}
       </div>

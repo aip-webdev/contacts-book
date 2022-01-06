@@ -10,7 +10,7 @@ export function NoMatchPage() {
             <Typography variant='h2' component='h1' align='center'>
                 PAGE NOT FOUND
                 <Typography variant='h6' component='p'>
-                    Go to the <Link to='/profile'>home page</Link>
+                    Go to the <Link to='/contacts'>your page</Link>
                 </Typography>
             </Typography>
 

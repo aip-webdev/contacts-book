@@ -3,7 +3,7 @@ import {makeStyles} from "@mui/styles";
 
 const useStyles = makeStyles( {
     box: {
-        color: colors.black,
+        color: colors.black06,
         fontWeight: '500'
     },
 })

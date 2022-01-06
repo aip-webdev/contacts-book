@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
-import styles from './styles'
 import ReactDOM from 'react-dom'
 import { useNavigate } from 'react-router-dom'
 import {useMouseEventAction} from "../../../hooks/useMouseEventAction";
+import useStyles from './styles'
 
 interface IModalProps {
 	children: React.ReactNode
@@ -10,6 +10,7 @@ interface IModalProps {
 
 export function Modal({ children }: IModalProps) {
 	const [node, setNode] = useState<Element>()
+	const classes = useStyles()
 	const ref = useRef(null)
 	const navigate = useNavigate()
 	useEffect(() => {
@@ -21,8 +22,8 @@ export function Modal({ children }: IModalProps) {
 		return null
 	}
 	return ReactDOM.createPortal(
-		<div className={styles.modalBack}>
-			<div ref={ref} className={styles.modal}>
+		<div className={classes.modalBack}>
+			<div ref={ref} className={classes.modal}>
 				{children}
 			</div>
 		</div>,
