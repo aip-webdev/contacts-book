@@ -19,12 +19,14 @@ const useStyles = makeStyles({
     closeTabButton: {
         top: '50%',
         color: '#124559 !important',
-        right: 0,
+        right: '-1%',
         // @ts-ignore
         position: 'absolute !important',
         transform: 'translateY(-50%)',
         backgroundColor: 'transparent !important',
-        zIndex: 100,
+        [theme.breakpoints.up('md')]: {
+            right: '5%',
+        },
     },
     tabs: {
         borderRight: 1,

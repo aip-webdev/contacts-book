@@ -24,7 +24,7 @@ const theme = createTheme({
             paddingRight: '10px',
             width: '7px',
             height: '4px',
-            zIndex: '100',
+            zIndex: 100,
             backgroundColor: colors.pistachioLT,
           },
 
