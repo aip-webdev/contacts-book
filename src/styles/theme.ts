@@ -25,6 +25,7 @@ const theme = createTheme({
             width: '7px',
             height: '4px',
             backgroundColor: colors.pistachioLT,
+            zIndex: 100
           },
 
           '&::-webkit-scrollbar-track': {

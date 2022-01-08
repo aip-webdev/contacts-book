@@ -1,16 +1,15 @@
+import {useNavigate} from "react-router-dom";
 import {useAppStore} from "../../hooks/useAppStore";
-import React, {useEffect, useState} from "react";
-import { Navigate } from "react-router-dom";
+import React, {useEffect} from "react";
 
 export const RequiredAuth = ({ children }: { children: JSX.Element }) => {
     const [state] = useAppStore();
-    const [rendered, setRendered] = useState(false)
-
+    const navigate = useNavigate();
     useEffect(() => {
-        setRendered(true)
+        if (!state.isAuth) {
+            navigate("/signin")
+        }
     }, [])
-    if (rendered && !state.isAuth) {
-        return (<Navigate to='/signin'/>)
-    }
+
     return children
 }
