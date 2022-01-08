@@ -4,9 +4,8 @@ import {AuthForm} from "../../Components/AuthForm";
 import {SignUpBtnGroup} from "../../Components/SignUpBtnGroup";
 import {addNewContactData, createNewUser, login} from "../../../context/actions";
 import {Navigate, useNavigate} from "react-router-dom";
-import {IContact, IContacts, IUser} from "../../../../types/global";
+import {IContact, IUser} from "../../../../types/global";
 import {addStringId} from "../../../utils/react/generateRandomIndex";
-import {createContactData, register} from "../../../context/api";
 
 export const SignUpPage = () => {
     const [{users, loading, error, isAuth: isAuth}, dispatch] = useAppStore();
@@ -31,19 +30,14 @@ export const SignUpPage = () => {
                 type: 'mailError',
                 message: 'An account with this address has already been registered'
             };
-            register(user).then((userData: IUser) => {
-                dispatch(createNewUser(userData))
-                createContactData({
-                    id: userData.id,
-                    contactsList: [ contact as IContact],
-                    contactsGroups: ['all']
-                }).then((contactData: IContacts) => {
-                    dispatch(addNewContactData(contactData))
-                    dispatch(login(userData.id))
-                    navigate("/contacts")
-                })
-            })
-
+            dispatch(createNewUser(user))
+            dispatch(addNewContactData({
+                id: user.id,
+                contactsList: [ contact as IContact],
+                contactsGroups: ['all']
+            }))
+            dispatch(login(user.id))
+            navigate("/contacts")
         } catch (e) {
             console.log(e)
         }

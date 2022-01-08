@@ -11,7 +11,6 @@ import {addNewContact, addNewGroup, removeContact, removeGroup} from "../../../c
 import {AddingContact} from "./AddingContact";
 import {useMediaSize} from "../../../hooks/useMediaSize";
 import {Close} from '@mui/icons-material';
-import {addContact, addGroup, deleteContact, removeGroupName} from "../../../context/api";
 
 export const a11yProps = (isSm: boolean, index: number) => (isSm ?
     {
@@ -53,41 +52,22 @@ export const ContactsTabs = () => {
     };
 
     const handleClickAddingContactBtn = (contact: IContact) => {
-        try {
-            addContact(id, contact, data)
-                .then(r => dispatch(addNewContact(id, contact)))
-        } catch (e) {
-            console.log(e)
-        }
+        dispatch(addNewContact(id, contact))
     }
 
     const handleClickAddingTabBtn = (groupName: string) => {
-        try {
-            addGroup(id, groupName, data)
-                .then(r => dispatch(addNewGroup(id, groupName)))
-        } catch (e) {
-            console.log(e)
-        }
+        dispatch(addNewGroup(id, groupName))
+
     }
 
     const handleClickRemoveContactBtn = (contact: IContact) => {
-        try {
-            deleteContact(id, contact, data)
-                .then(r => dispatch(removeContact(id, contact)))
-        } catch (e) {
-            console.log(e)
-        }
+        dispatch(removeContact(id, contact))
     }
 
     // @ts-ignore
     const handleClickRemoveTabBtn = (groupName: string, e: MouseEvent<SVGSVGElement>) => {
         e.stopPropagation()
-        try {
-            removeGroupName(id, groupName, data)
-                .then(r => dispatch(removeGroup(id, groupName)))
-        } catch (e) {
-            console.log(e)
-        }
+        dispatch(removeGroup(id, groupName))
     }
 
     return (
