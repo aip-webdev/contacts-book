@@ -12,7 +12,6 @@ import {SignInPage} from "./shared/Pages/SignInPage";
 import {SignUpPage} from "./shared/Pages/SignUpPage";
 import {Header} from "./shared/Components/Header";
 import {Content} from "./shared/Components/Content";
-import {useDBData} from "./hooks/useDBData";
 
 const AppComponent = () => {
     return (
@@ -26,7 +25,6 @@ const AppComponent = () => {
 }
 
 const AppRouter = () => {
-    const state = useDBData()
     return (
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
