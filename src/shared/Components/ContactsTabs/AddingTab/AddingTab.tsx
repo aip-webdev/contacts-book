@@ -5,6 +5,7 @@ import {useMouseEventAction} from "../../../../hooks/useMouseEventAction";
 import {a11yProps} from "../ContactsTabs";
 import {IContacts} from "../../../../../types/global";
 import {AddingButton} from "../../AddingButton";
+import {useMediaSize} from "../../../../hooks/useMediaSize";
 
 interface IAddingTab {
     contact: IContacts
@@ -15,8 +16,9 @@ export const AddingTab = (props: IAddingTab) => {
     const ref = useRef(null)
     const classes = useStyles()
     const {contact, onClickAddingBtn} = props
-    const [newGroupVal, setNewGroupVal] = React.useState('');
-    const {userId, contactsList, contactsGroups} = props.contact;
+    const [newGroupVal, setNewGroupVal] = React.useState('')
+    const {id, contactsList, contactsGroups} = props.contact
+    const {isSm, isMd} = useMediaSize()
     useMouseEventAction({action: () => setNewGroupVal(''), ref})
 
     const handleTabInputChange = (e: ChangeEvent) => {
@@ -26,13 +28,13 @@ export const AddingTab = (props: IAddingTab) => {
     }
 
     const handleClickAddingBtn = () => {
-        onClickAddingBtn(newGroupVal.trim())
+        onClickAddingBtn(newGroupVal.trim().toLowerCase())
         setNewGroupVal('')
     }
 
     const handleKeyPressAddingBtn = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if ( e.key === 'Enter') {
-            onClickAddingBtn(newGroupVal.trim())
+            onClickAddingBtn(newGroupVal.trim().toLowerCase())
             setNewGroupVal('')
             // @ts-ignore
             ref.current !== null && ref.current.focus()
@@ -59,7 +61,7 @@ export const AddingTab = (props: IAddingTab) => {
                     {newGroupVal && <AddingButton onClickAddingBtn={handleClickAddingBtn} />}
                 </>
             }
-            {...a11yProps(contactsGroups.length)}
+            {...a11yProps(isSm || isMd, contactsGroups.length)}
         />
     );
 };

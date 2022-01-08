@@ -4,13 +4,14 @@ import {CancelPresentation} from "@mui/icons-material";
 import {Button} from "@mui/material";
 
 interface IRemoveButton {
-  onClickRemoveBtn: () => void
+  onClickRemoveBtn: () => void,
+  classname?: any,
 }
 
-export function RemoveButton({onClickRemoveBtn}: IRemoveButton) {
+export function RemoveButton({onClickRemoveBtn, classname}: IRemoveButton) {
 
   const classes = useStyles()
   return (
-      <Button type='button' className={classes.removeBtn} onClick={onClickRemoveBtn} startIcon={<CancelPresentation/>}/>
+      <Button type='button' className={classname ?? classes.removeBtn} onClick={onClickRemoveBtn} startIcon={<CancelPresentation/>}/>
   );
 }

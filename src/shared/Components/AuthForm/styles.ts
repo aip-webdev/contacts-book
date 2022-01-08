@@ -6,17 +6,19 @@ const useStyles = makeStyles( {
         display: 'grid !important',
         placeItems: 'center',
         height: '100vh',
+        padding: '0 !important'
     },
     box: {
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: colors.pine,
-        padding: '70px',
-        borderRadius: '3%',
-        fontWeight: '500',
-        width: '344px',
+        width: '320px',
         height: '460px',
+        display: 'flex',
+        padding: '62px',
         boxShadow: '0 0 12px rgb(0 0 0 / 50%)',
+        fontWeight: '500',
+        borderRadius: '3%',
+        flexDirection: 'column',
+        backgroundColor: '#124559',
+        minWidth: '320px'
     },
     input: {
         marginBottom: '2rem !important',

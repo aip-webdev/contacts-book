@@ -63,8 +63,8 @@ export function AddingContact({groupNames, onClickAddingBtn}: IAddingContact) {
                             />
                         )
                     })}
-                    <AddingButton onClickAddingBtn={handleClickAddingButton}/>
-                    <RemoveButton onClickRemoveBtn={() => setIsVisibleContactInputs(false)}/>
+                    <AddingButton classname={classes.addingBtn} onClickAddingBtn={handleClickAddingButton}/>
+                    <RemoveButton classname={classes.removeBtn} onClickRemoveBtn={() => setIsVisibleContactInputs(false)}/>
                 </>
             }
         </Stack>

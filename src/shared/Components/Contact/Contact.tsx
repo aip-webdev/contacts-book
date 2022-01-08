@@ -27,12 +27,12 @@ export function Contact({contact, onClickRemoveBtn}: IContactProps) {
             alignItems="center"
             sx={{marginBottom: '1em'}}
         >
-            <Grid item xs={1}><LetterAvatar firstName={name} lastname={lastName && lastName}/></Grid>
+            <Grid item xs={2} md={1}><LetterAvatar firstName={name} lastname={lastName && lastName}/></Grid>
             <Grid item xs><Typography className={classes.title}>{name}</Typography></Grid>
             {lastName && <Grid item xs><Typography className={classes.title}>{lastName}</Typography></Grid>}
             <Grid item xs><Typography className={classes.title}><a href={`mailto:${email}`}>{email}</a></Typography></Grid>
             {(isLg || isXl) && tel && <Grid item xs><Typography className={classes.title}><a href={`tel:${tel}`}>{tel}</a></Typography></Grid>}
-            <Grid item xs={1}><RemoveButton onClickRemoveBtn={handleClickBtn}/></Grid>
+            <Grid item xs={2} md={1}><RemoveButton onClickRemoveBtn={handleClickBtn}/></Grid>
         </Grid>
     )
 }

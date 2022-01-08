@@ -30,7 +30,7 @@ const theme = createTheme({
           '&::-webkit-scrollbar-track': {
             borderRadius: '10px',
             '-webkit-box-shadow': 'inset 0 0 6px rgba(0, 0, 0, 0.4)',
-            background: colors.pistachioL,
+            backgroundColor: colors.pistachioL,
           },
 
           '&::-webkit-scrollbar-thumb': {

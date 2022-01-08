@@ -1,20 +1,22 @@
 import React from 'react';
 import {Check} from "@mui/icons-material";
 import useStyles from "./styles";
+import {Button} from "@mui/material";
 
 interface IAddingButton {
-  onClickAddingBtn: () => void
+    onClickAddingBtn: () => void,
+    classname?: any
 }
 
-export function AddingButton({onClickAddingBtn}: IAddingButton) {
-  const classes = useStyles()
-  return (
-      <button
-          type='button'
-          className={classes.addingBtn}
-          onClick={onClickAddingBtn}
-      >
-        <Check/>
-      </button>
-  )
+export function AddingButton({onClickAddingBtn, classname}: IAddingButton) {
+    const classes = useStyles()
+    return (
+        <Button
+            type='button'
+            className={classname ?? classes.addingBtn}
+            onClick={onClickAddingBtn}
+        >
+            <Check/>
+        </Button>
+    )
 }

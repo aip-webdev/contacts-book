@@ -4,59 +4,96 @@ import {TabPanel} from "./TabPanel";
 import {IContact, IContacts} from "../../../../types/global";
 import {useAppStore} from "../../../hooks/useAppStore";
 import {Contact} from "../Contact";
-import {Tabs, Tab, Box} from "@mui/material";
+import {Box, Tab, Tabs} from "@mui/material";
 import {AddingTab} from "./AddingTab";
 import {Loading} from "../Loading";
-import {addNewContact, addNewGroup, removeContact} from "../../../context/actions";
+import {addNewContact, addNewGroup, removeContact, removeGroup} from "../../../context/actions";
 import {AddingContact} from "./AddingContact";
 import {useMediaSize} from "../../../hooks/useMediaSize";
+import {Close} from '@mui/icons-material';
+import {addContact, addGroup, deleteContact, removeGroupName} from "../../../context/api";
 
-export const a11yProps = (index: number) => ({
-    id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
-});
+export const a11yProps = (isSm: boolean, index: number) => (isSm ?
+    {
+        id: `vertical-tab-${index}`,
+        'aria-controls': `vertical-tabpanel-${index}`,
+    } :
+    {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    });
 
 export const ContactsTabs = () => {
     const [state, dispatch] = useAppStore()
-    const [value, setValue] = React.useState(0)
+    const [value, setValue] = useState(0)
     const [search, setSearch] = useState('')
     const [data, setData] = useState<IContacts>()
-    const {isSm} = useMediaSize();
+    const {isSm, isMd} = useMediaSize();
     const classes = useStyles()
+
+
     useEffect(() => {
         if (!state.contacts || !state.contacts || state.contacts.length === 0) return;
         const {contacts} = state
-        let contactData = contacts.filter((contact) => contact.userId === state.authUserId)[0]
-        contactData = {...contactData, contactsList: contactData.contactsList.filter((contact: IContact) =>
+        let contactData = contacts.filter((contact) => contact.id === state.authUserId)[0]
+        contactData = {
+            ...contactData, contactsList: contactData.contactsList.filter((contact: IContact) =>
                 !state.searchField ? true : !!Object.values(contact)
                     .find((value: string) => value.includes(state.searchField))
-            ) }
-        contactData.userId && setData(contactData)
+            )
+        }
+        contactData.id && setData(contactData)
     }, [state.contacts, state.searchField])
 
-    if (!data) return(<Loading />);
-    const { userId, contactsList, contactsGroups } = data
+    if (!data) return (<Loading/>);
+    const {id, contactsList, contactsGroups} = data
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
 
     const handleClickAddingContactBtn = (contact: IContact) => {
-        dispatch(addNewContact(userId, contact))
+        try {
+            addContact(id, contact, data)
+                .then(r => dispatch(addNewContact(id, contact)))
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     const handleClickAddingTabBtn = (groupName: string) => {
-        dispatch(addNewGroup(userId, groupName))
+        try {
+            addGroup(id, groupName, data)
+                .then(r => dispatch(addNewGroup(id, groupName)))
+        } catch (e) {
+            console.log(e)
+        }
     }
 
-    const handleClickRemoveBtn = (contact: IContact) => {
-        dispatch(removeContact(userId, contact))
+    const handleClickRemoveContactBtn = (contact: IContact) => {
+        try {
+            deleteContact(id, contact, data)
+                .then(r => dispatch(removeContact(id, contact)))
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    // @ts-ignore
+    const handleClickRemoveTabBtn = (groupName: string, e: MouseEvent<SVGSVGElement>) => {
+        e.stopPropagation()
+        try {
+            removeGroupName(id, groupName, data)
+                .then(r => dispatch(removeGroup(id, groupName)))
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     return (
         <Box className={classes.box}>
             <Tabs
-                orientation={isSm ? 'horizontal' : 'vertical'}
+                orientation={isSm || isMd ? 'horizontal' : 'vertical'}
                 variant='scrollable'
                 value={value}
                 onChange={handleChange}
@@ -64,24 +101,39 @@ export const ContactsTabs = () => {
                 className={classes.tabs}
             >
                 {contactsGroups.map((groupName, index) =>
-                    <Tab key={index} label={groupName} {...a11yProps(index)} />
+                    <Tab
+                        className={classes.tab}
+                        key={index}
+                        label={groupName === 'all' ? groupName :
+                            <>
+                                {groupName}
+                                <Close
+                                    onClick={(e) => handleClickRemoveTabBtn(groupName, e)}
+                                    className={classes.closeTabButton}
+                                />
+                            </>
+                        }
+                        {...a11yProps(isSm || isMd, index)}
+                    />
                 )}
-                <AddingTab contact={data} onClickAddingBtn={handleClickAddingTabBtn} />
+                <AddingTab contact={data} onClickAddingBtn={handleClickAddingTabBtn}/>
             </Tabs>
 
             {contactsGroups.map(((groupName, index) =>
                     <TabPanel key={index} value={value} index={index}>
-                        <AddingContact groupNames={contactsGroups} onClickAddingBtn={handleClickAddingContactBtn} />
+                        <AddingContact groupNames={contactsGroups} onClickAddingBtn={handleClickAddingContactBtn}/>
                         {groupName === 'all' && !search && contactsList.length > 0 && contactsList
                             .map((contact: IContact) =>
-                            <Contact key={contact.id} contact={contact} onClickRemoveBtn={handleClickRemoveBtn}/>
-                        )}
+                                <Contact key={contact.id} contact={contact}
+                                         onClickRemoveBtn={handleClickRemoveContactBtn}/>
+                            )}
 
-                        {groupName !=='all' && contactsList.length > 0 && contactsList
+                        {groupName !== 'all' && contactsList.length > 0 && contactsList
                             .filter((contact: IContact) => contact.group === groupName)
                             .map((contact: IContact) =>
-                            <Contact key={contact.id} contact={contact} onClickRemoveBtn={handleClickRemoveBtn}/>
-                        )}
+                                <Contact key={contact.id} contact={contact}
+                                         onClickRemoveBtn={handleClickRemoveContactBtn}/>
+                            )}
                     </TabPanel>
             ))}
         </Box>

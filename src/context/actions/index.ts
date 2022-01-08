@@ -137,6 +137,20 @@ export function addNewGroup(userId: string, groupName: string): AddNewGroupActio
     }
 }
 
+export const REMOVE_GROUP = 'REMOVE_GROUP';
+
+export interface RemoveGroupAction {
+    type: typeof REMOVE_GROUP,
+    payload: { userId: string, groupName: string }
+}
+
+export function removeGroup(userId: string, groupName: string): RemoveGroupAction {
+    return {
+        type: REMOVE_GROUP,
+        payload: {userId, groupName}
+    }
+}
+
 export const ADD_NEW_CONTACT_DATA = 'ADD_NEW_CONTACT_DATA';
 export interface AddNewContactDataAction {
     type: typeof ADD_NEW_CONTACT_DATA,
@@ -188,3 +202,5 @@ export function setSearchValue(searchValue: string): SetSearchValueAction {
         payload: searchValue
     }
 }
+
+
