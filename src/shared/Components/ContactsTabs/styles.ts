@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     closeTabButton: {
         top: '50%',
         color: '#124559 !important',
-        right: '-1%',
+        right: '-3%',
         // @ts-ignore
         position: 'absolute !important',
         transform: 'translateY(-50%)',
