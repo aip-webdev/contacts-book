@@ -19,11 +19,6 @@
       "id": "someId4",
       "email": "some4@gmail.com",
       "password": "somePass4"
-    },
-    {
-      "id": "jn3ike1yes",
-      "email": "aipborob@gmail.com",
-      "password": "11223344"
     }
   ],
   "contacts": [
@@ -106,30 +101,6 @@
       "contactsGroups": [
         "all",
         "friends"
-      ]
-    },
-    {
-      "id": "jn3ike1yes",
-      "contactsList": [
-        {
-          "name": "vev",
-          "lastName": "evev",
-          "email": "erve",
-          "tel": "erv",
-          "group": "all",
-          "id": "jbg2thunpc"
-        },
-        {
-          "name": "wefwf",
-          "lastName": "wefw",
-          "email": "wef",
-          "tel": "wef",
-          "group": "all",
-          "id": "nvlq96opb1e"
-        }
-      ],
-      "contactsGroups": [
-        "all"
       ]
     }
   ]
