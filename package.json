@@ -11,9 +11,8 @@
     "jserver": "json-server --watch ./db.json --port 3002",
     "dev": "cross-env NODE_ENV=development node ./bin/dev.js",
     "devDB": "npm-run-all --parallel dev jserver ",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "prod": "cross-env NODE_ENV=production node ./dist/server/server.js",
-    "start": "npm-run-all --parallel jserver prod "
+    "build": "cross-env NODE_ENV=production PORT=3005 webpack --config webpack.config.js",
+    "start": "cross-env NODE_ENV=production PORT=3005 node ./dist/server/server.js"
   },
   "author": "PetrenkoAI",
   "license": "ISC",
