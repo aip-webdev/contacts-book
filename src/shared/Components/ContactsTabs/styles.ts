@@ -4,16 +4,31 @@ import theme from "../../../styles/theme";
 
 const useStyles = makeStyles({
     box: {
-        flexGrow: '1',
         backgroundColor: colors.pistachioL,
         display: 'flex',
-        height: '93vh'
+        flexDirection: 'column',
+        height: '93vh',
+        flexGrow: '1',
+        [theme.breakpoints.up('md')]: {
+            flexDirection: 'row',
+
+
+        },
+
+    },
+    closeTabButton: {
+        top: '50%',
+        color: '#124559 !important',
+        right: '5%',
+        // @ts-ignore
+        position: 'absolute !important',
+        transform: 'translateY(-50%)',
+        backgroundColor: 'transparent !important',
+        zIndex: 100,
     },
     tabs: {
         borderRight: 1,
         borderColor: colors.pine,
-        minWidth: '150px',
-        maxWidth: '150px',
         [theme.breakpoints.up('md')]: {
             minWidth: '180px',
             maxWidth: '180px',
@@ -48,6 +63,9 @@ const useStyles = makeStyles({
 
         }
     },
+    tab: {
+        position: 'relative'
+    }
 })
 
 export default useStyles;

@@ -13,6 +13,7 @@ const useStyles = makeStyles({
         '&:hover': {
             color: `${colors.red} !important`,
         },
+
     }
 })
 

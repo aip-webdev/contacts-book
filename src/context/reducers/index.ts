@@ -14,7 +14,7 @@ import {
     FETCH_CONTACTS,
     FETCH_CONTACTS_SUCCESS,
     FETCH_CONTACTS_FAILURE,
-    SET_SEARCH_VALUE
+    SET_SEARCH_VALUE, REMOVE_GROUP
 } from "../actions";
 
 import {Reducer} from "react";
@@ -26,6 +26,7 @@ const rootReducer: Reducer<IStateData, MyAction> = (state, action) => {
         case ADD_NEW_CONTACT:
         case ADD_NEW_CONTACT_DATA:
         case REMOVE_CONTACT:
+        case REMOVE_GROUP:
             return merge(state, {contacts: contactsDataReducer(state.contacts, action)})
         case FETCH_CONTACTS_SUCCESS:
             return merge(state, {contacts: contactsDataReducer(state.contacts, action), loading: false})

@@ -5,12 +5,12 @@ const useStyles = makeStyles({
     addingBtn: {
         backgroundColor: 'transparent',
         border: 'none',
-        color: colors.pine,
+        color: `${colors.pine} !important`,
         marginLeft: '10px',
         width: '50px',
         '&:hover': {
             backgroundColor: colors.black03,
-            borderRadius: '50%',
+            borderRadius: '50% !important',
         }
     },
 })

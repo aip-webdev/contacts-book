@@ -1,7 +1,5 @@
 import {
     LogoutAction,
-    FetchUsersSuccessAction,
-    FetchUsersAction,
     LoginAction,
     CreateNewUserAction,
     AddNewGroupAction,
@@ -10,7 +8,12 @@ import {
     RemoveContactAction,
     FetchContactsAction,
     FetchContactsSuccessAction,
-    FetchContactsFailureAction, FetchUsersFailureAction, SetSearchValueAction
+    FetchContactsFailureAction,
+    SetSearchValueAction,
+    RemoveGroupAction,
+    FetchUsersAction,
+    FetchUsersSuccessAction,
+    FetchUsersFailureAction
 } from "../src/context/actions";
 
 export interface IStateData {
@@ -39,11 +42,11 @@ export interface IContact {
 }
 
 export interface IContacts {
-    userId: string,
+    id: string,
     contactsList: IContact[]
     contactsGroups: string [],
 }
 
-export type MyAction = FetchUsersAction | FetchUsersSuccessAction | FetchUsersFailureAction | LoginAction | LogoutAction |
+export type MyAction = FetchContactsAction | FetchContactsSuccessAction | FetchContactsFailureAction | LoginAction | LogoutAction |
     CreateNewUserAction | AddNewGroupAction | AddNewContactDataAction | AddNewContactAction | RemoveContactAction |
-    FetchContactsAction | FetchContactsSuccessAction | FetchContactsFailureAction | SetSearchValueAction
+    SetSearchValueAction | RemoveGroupAction | FetchUsersAction | FetchUsersSuccessAction | FetchUsersFailureAction

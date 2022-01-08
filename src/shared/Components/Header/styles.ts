@@ -10,10 +10,11 @@ const useStyles = makeStyles({
         width: '100vw',
     },
     appBar: {
-            backgroundColor: `${colors.pine} !important`,
-            height: '7vh',
-            position: 'fixed',
-            width: '100vw',
+        backgroundColor: `${colors.pine} !important`,
+        height: '7vh',
+        // @ts-ignore
+        position: 'fixed !important',
+        width: '100vw',
 
     },
     link: {
@@ -24,7 +25,10 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        minWidth: '320px',
+        padding: '0 10px !important',
         width: '100vw',
+        margin: '0 auto',
         [theme.breakpoints.up('xl')]: {
             width: '1400px',
         },

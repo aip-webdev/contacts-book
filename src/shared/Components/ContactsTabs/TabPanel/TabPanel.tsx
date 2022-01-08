@@ -1,30 +1,41 @@
 import React from 'react';
 import Box from "@mui/material/Box";
 import useStyles from './styles';
+import {useMediaSize} from "../../../../hooks/useMediaSize";
 
 interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
+    children?: React.ReactNode;
+    index: number;
+    value: number;
 }
 
+
 export const TabPanel = (props: TabPanelProps) => {
-  const { children, value, index, ...other } = props;
-  const classes = useStyles();
-  return (
-      <div
-          className={classes.tabPanel}
-          role="tabpanel"
-          hidden={value !== index}
-          id={`vertical-tabpanel-${index}`}
-          aria-labelledby={`vertical-tab-${index}`}
-          {...other}
-      >
-        {value === index && (
-            <Box className={classes.box}>
-              {children}
-            </Box>
-        )}
-      </div>
-  )
+    const {children, value, index, ...other} = props;
+    const classes = useStyles();
+    const {isSm, isMd} = useMediaSize()
+    const a11yProps = (isSm: boolean, index: number) => (isSm ?
+        {
+            id:`simple-tabpanel-${index}`,
+        'aria-labelledby':`simple-tab-${index}`
+        } :
+        {
+            id:`vertical-tabpanel-${index}`,
+            'aria-labelledby':`vertical-tab-${index}`
+        });
+    return (
+        <div
+            className={classes.tabPanel}
+            role="tabpanel"
+            hidden={value !== index}
+            {...a11yProps(isSm || isMd, index)}
+            {...other}
+        >
+            {value === index && (
+                <Box className={classes.box}>
+                    {children}
+                </Box>
+            )}
+        </div>
+    )
 }
