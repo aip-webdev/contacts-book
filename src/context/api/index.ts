@@ -1,8 +1,8 @@
 import axios from 'axios';
 import {IContact, IContacts, IUser} from "../../../types/global";
 import {merge, uniq, without} from "ramda";
-
-const dbURI = 'http://localhost:3002'
+const IS_DEV = process.env.NODE_ENV !== 'production';
+const dbURI =IS_DEV ? 'http://localhost:3002' : ''
 export const register = async (user: IUser) => {
    const userData =  await axios.post(`${dbURI}/users`, user)
     return userData.data as IUser
