@@ -8,7 +8,7 @@ import {App} from "../App"
 import {indexTemplate} from "./indexTemplate";
 
 const IS_DEV = process.env.NODE_ENV !== 'production';
-const PORT = IS_DEV ? process.env.PORT ?? 3000 : process.env.PORT ?? 3003
+const PORT = IS_DEV ? process.env.PORT ?? 3000 : process.env.PORT ?? 3005
 
 const reqHandler = async (req, res) => {
     res.send(

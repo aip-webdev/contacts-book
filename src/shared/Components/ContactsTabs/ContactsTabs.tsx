@@ -35,14 +35,20 @@ export const ContactsTabs = () => {
         if (!state.contacts || !state.contacts || state.contacts.length === 0) return;
         const {contacts} = state
         let contactData = contacts.filter((contact) => contact.id === state.authUserId)[0]
-        contactData = {
-            ...contactData, contactsList: contactData.contactsList.filter((contact: IContact) =>
-                !state.searchField ? true : !!Object.values(contact)
-                    .find((value: string) => value.includes(state.searchField))
-            )
+        !!contactData && setData(contactData)
+
+    }, [state.contacts])
+    useEffect(() => {
+        if (!!state.searchField && !!data) {
+            let contactData = {
+                ...data, contactsList: data.contactsList.filter((contact: IContact) =>
+                    !state.searchField ? true : !!Object.values(contact)
+                        .find((value: string) => value.includes(state.searchField))
+                )
+            }
+            !!data && setData(contactData)
         }
-        contactData.id && setData(contactData)
-    }, [state.contacts, state.searchField])
+    }, [state.searchField])
 
     if (!data) return (<Loading/>);
     const {id, contactsList, contactsGroups} = data
