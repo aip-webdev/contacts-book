@@ -23,6 +23,7 @@ export function Contact({contact, onClickRemoveBtn}: IContactProps) {
             spacing={2}
             container
             direction="row"
+            wrap='nowrap'
             justifyContent="space-between"
             alignItems="center"
             sx={{marginBottom: '1em'}}

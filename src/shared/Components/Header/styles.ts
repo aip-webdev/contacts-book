@@ -15,7 +15,7 @@ const useStyles = makeStyles({
         // @ts-ignore
         position: 'fixed !important',
         width: '100vw',
-
+        zIndex: 1000
     },
     link: {
         textDecoration: 'none',
