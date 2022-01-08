@@ -2,7 +2,7 @@ import React from 'react'
 import express from 'express';
 const jsonServer = require('json-server');
 const middlewares = jsonServer.defaults();
-const router = jsonServer.router('../../db.json');
+const router = jsonServer.router('db.json');
 import compression from 'compression';
 import ReactDOMServer from 'react-dom/server';
 import {StaticRouter} from "react-router-dom/server";
