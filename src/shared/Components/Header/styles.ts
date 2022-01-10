@@ -5,14 +5,14 @@ import theme from "../../../styles/theme";
 const useStyles = makeStyles({
     '& .MuiPaper-root': {
         backgroundColor: colors.pine,
-        minHeight: '50px',
+        minHeight: '60px',
         height: '7vh',
         position: 'fixed',
         width: '100vw',
     },
     appBar: {
         backgroundColor: `${colors.pine} !important`,
-        minHeight: '50px',
+        minHeight: '60px',
         height: '7vh',
         // @ts-ignore
         position: 'fixed !important',
