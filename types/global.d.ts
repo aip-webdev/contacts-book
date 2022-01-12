@@ -27,6 +27,12 @@ export interface IStateData {
     removeContact: (id: string, contact: IContact) => void,
     addNewContactData: (contactData:IContacts) => void,
     setSearchValue: (searchValue: string) => void,
+    fetchUsers: () => void,
+    fetchUsersSuccess: (users: IUser[]) => void,
+    fetchUsersFailure: () => void,
+    fetchContacts: () => void,
+    fetchContactsSuccess: (contacts: IContacts[]) => void,
+    fetchContactsFailure: () => void,
 }
 
 export interface IUser {

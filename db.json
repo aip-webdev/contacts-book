@@ -21,7 +21,7 @@
       "password": "somePass4"
     },
     {
-      "id": "yn46c2rnzci",
+      "id": "k0q36533t09",
       "email": "aipborob@gmail.com",
       "password": "11223344"
     }
@@ -118,6 +118,39 @@
           "tel": "88002000600",
           "group": "all",
           "id": "6ywam7ooegu"
+        }
+      ],
+      "contactsGroups": [
+        "all"
+      ]
+    },
+    {
+      "id": "lcr7i5tvh6",
+      "contactsList": [
+        {
+          "email": "some@gmail.com",
+          "name": "Name",
+          "lastName": "Lastname",
+          "tel": "88002000600",
+          "group": "all",
+          "id": "sgf32ylm2vg"
+        }
+      ],
+      "contactsGroups": [
+        "all",
+        "fgbfdgn"
+      ]
+    },
+    {
+      "id": "k0q36533t09",
+      "contactsList": [
+        {
+          "email": "some@gmail.com",
+          "name": "Name",
+          "lastName": "Lastname",
+          "tel": "88002000600",
+          "group": "all",
+          "id": "jk849m6eo4h"
         }
       ],
       "contactsGroups": [

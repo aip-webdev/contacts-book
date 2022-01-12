@@ -27,7 +27,8 @@ export const AddingTab = React.memo((props: IAddingTab) => {
         setNewGroupVal(value)
     }
 
-    const handleClickAddingBtn = () => {
+    const handleClickAddingBtn = (e: MouseEvent) => {
+        e.stopPropagation()
         onClickAddingBtn(newGroupVal.trim().toLowerCase())
         setNewGroupVal('')
     }

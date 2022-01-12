@@ -11,7 +11,12 @@ const useStyles = makeStyles({
         '&:hover': {
             backgroundColor: colors.black03,
             borderRadius: '50% !important',
-        }
+        },
+        position: 'absolute',
+        right: 0,
+        top: '50%',
+        transform: 'translateY(-50%)'
+
     },
 })
 
