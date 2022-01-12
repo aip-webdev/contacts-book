@@ -3,9 +3,10 @@ const nodeExternals = require('webpack-node-externals');
 
 const NODE_ENV = process.env.NODE_ENV;
 
+const IS_PROD = NODE_ENV === 'production';
 module.exports = {
     target: 'node',
-    mode: NODE_ENV ? NODE_ENV : 'development',
+    mode: IS_PROD ? 'production' : 'development',
     entry: path.resolve(__dirname, '../src/server/server.js'),
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],

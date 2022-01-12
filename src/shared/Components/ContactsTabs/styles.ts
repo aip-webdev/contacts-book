@@ -7,14 +7,39 @@ const useStyles = makeStyles({
         backgroundColor: colors.pistachioL,
         display: 'flex',
         flexDirection: 'column',
-        height: '93vh',
+        height: 'calc(100vh - 65px)',
         flexGrow: '1',
+        '& a': {
+            textDecoration: "none",
+            color: 'rgba(18, 69, 89, 0.8)'
+        },
         [theme.breakpoints.up('md')]: {
             flexDirection: 'row',
-
-
+        },
+        '&::-webkit-scrollbar': {
+            paddingRight: '10px',
+            width: '7px',
+            height: '4px',
+            zIndex: 100,
+            backgroundColor: colors.pistachioLT,
         },
 
+        '&::-webkit-scrollbar-track': {
+            borderRadius: '10px',
+            '-webkit-box-shadow': 'inset 0 0 6px rgba(0, 0, 0, 0.4)',
+            backgroundColor: colors.pistachioL,
+        },
+
+        '&::-webkit-scrollbar-thumb': {
+            borderRadius: '10px',
+            '-webkit-box-shadow': 'inset 0 0 6px rgba(0, 0, 0, 0.4)',
+            backgroundColor: colors.pistachioLT,
+        },
+
+        '&::-webkit-scrollbar-thumb:hover': {
+            borderRadius: '3px',
+            backgroundColor: colors.pine
+        },
     },
     closeTabButton: {
         top: '50%',
@@ -25,12 +50,13 @@ const useStyles = makeStyles({
         transform: 'translateY(-50%)',
         backgroundColor: 'transparent !important',
         [theme.breakpoints.up('md')]: {
-            right: '5%',
+            right: '1%',
         },
     },
     tabs: {
         borderRight: 1,
         borderColor: colors.pine,
+        padding: '0.5em 1em',
         [theme.breakpoints.up('md')]: {
             minWidth: '180px',
             maxWidth: '180px',

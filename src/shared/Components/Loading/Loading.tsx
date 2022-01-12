@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
-
 import ReactDOM from 'react-dom'
 
-export function Loading() {
+export const Loading = React.memo(() => {
 	const [node, setNode] = useState<Element>()
 	useEffect(() => {
 		setNode(document.querySelector('#modal__root') ?? undefined)
@@ -18,4 +17,4 @@ export function Loading() {
 		</div>,
 		node,
 	)
-}
+})

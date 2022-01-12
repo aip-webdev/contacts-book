@@ -17,7 +17,16 @@ export interface IStateData {
     authUserId: string,
     searchField: string,
     loading: boolean,
-    error: boolean
+    error: boolean,
+    login: (id: string) => void,
+    logout: () => void,
+    createNewUser: (user: IUser) => void,
+    addNewGroup: (id: string, groupName: string) => void,
+    removeGroup: (id: string, groupName: string) => void,
+    addNewContact: (id: string, contact: IContact) => void,
+    removeContact: (id: string, contact: IContact) => void,
+    addNewContactData: (contactData:IContacts) => void,
+    setSearchValue: (searchValue: string) => void,
 }
 
 export interface IUser {

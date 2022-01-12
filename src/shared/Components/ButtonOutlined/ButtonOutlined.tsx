@@ -10,10 +10,10 @@ interface IButtonOutlined {
     btnIcon?: any
 }
 
-export const ButtonOutlined = (props: IButtonOutlined) => {
+export const ButtonOutlined = React.memo((props: IButtonOutlined) => {
     const {isSm} = useMediaSize();
     const classes = useStyles()
-    const {btnIcon, onClick, text, btnClassName=classes.button} = props
+    const {btnIcon, onClick, text, btnClassName = classes.button} = props
 
     return (
         <Button
@@ -25,4 +25,4 @@ export const ButtonOutlined = (props: IButtonOutlined) => {
             {!isSm && text}
         </Button>
     )
-};
+})

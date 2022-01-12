@@ -4,14 +4,14 @@ const useStyles = makeStyles({
     content: {
         minWidth: ' 320px',
         maxWidth: '639px',
-        paddingTop: '56px',
+        paddingTop: '65px',
+        height: '100vh',
         margin: '0 auto',
         [theme.breakpoints.up('md')]: {
             minWidth: '640px',
             maxWidth: '999px',
         },
         [theme.breakpoints.up('lg')]: {
-            paddingTop: '7vh',
             minWidth: '1000px',
             maxWidth: '1399px',
         },
