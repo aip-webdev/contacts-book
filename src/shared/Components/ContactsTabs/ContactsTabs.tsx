@@ -2,16 +2,17 @@ import React, {useEffect, useState} from 'react';
 import useStyles from "./styles";
 import {TabPanel} from "./TabPanel";
 import {IContact, IContacts} from "../../../../types/global";
-import {useAppStore} from "../../../hooks/useAppStore";
 import {Contact} from "../Contact";
 import {Box, Tab, Tabs} from "@mui/material";
 import {AddingTab} from "./AddingTab";
 import {Loading} from "../Loading";
-import {addNewContact, addNewGroup, removeContact, removeGroup} from "../../../context/actions";
 import {AddingContact} from "./AddingContact";
 import {useMediaSize} from "../../../hooks/useMediaSize";
 import {Close} from '@mui/icons-material';
-import {addContact, addGroup, deleteContact, removeGroupName} from "../../../context/api";
+import useStore from "../../../store";
+import {find, propEq} from "ramda";
+import shallow from "zustand/shallow";
+import {addContact, addGroup, deleteContact, removeGroupName} from "../../../store/api";
 
 export const a11yProps = (isSm: boolean, index: number) => (isSm ?
     {
@@ -23,31 +24,37 @@ export const a11yProps = (isSm: boolean, index: number) => (isSm ?
         'aria-controls': `simple-tabpanel-${index}`,
     });
 
-export const ContactsTabs = () => {
-    const [state, dispatch] = useAppStore()
+export const ContactsTabs = React.memo(() => {
     const [value, setValue] = useState(0)
+    const [search, setSearch] = useState('')
     const [data, setData] = useState<IContacts>()
-    const {isSm, isMd} = useMediaSize();
+    const {isSm} = useMediaSize();
     const classes = useStyles()
+    const authUserId = useStore(state => state.authUserId, shallow)
+    const contacts = useStore(state => state.contacts, shallow)
+    const searchField = useStore(state => state.searchField, shallow)
+    const addNewContact = useStore(state => state.addNewContact)
+    const addNewGroup = useStore(state => state.addNewGroup)
+    const removeContact = useStore(state => state.removeContact)
+    const removeGroup = useStore(state => state.removeGroup)
+
 
     useEffect(() => {
-        if (!state.contacts || !state.contacts || state.contacts.length === 0) return;
-        const {contacts} = state
-        let contactData = contacts.filter((contact) => contact.id === state.authUserId)[0]
+        if (!contacts || !contacts || contacts.length === 0) return;
+        let contactData = find(propEq('id', authUserId))(contacts) as IContacts
         !!contactData && setData(contactData)
-
-    }, [state.contacts])
+    }, [contacts])
     useEffect(() => {
-        if (!!state.searchField && !!data) {
+        if (!!searchField && !!data) {
             let contactData = {
                 ...data, contactsList: data.contactsList.filter((contact: IContact) =>
-                    !state.searchField ? true : !!Object.values(contact)
-                        .find((value: string) => value.includes(state.searchField))
+                    !searchField ? true : !!Object.values(contact)
+                        .find((value: string) => value.includes(searchField))
                 )
             }
             !!data && setData(contactData)
         }
-    }, [state.searchField])
+    }, [searchField])
 
     if (!data) return (<Loading/>);
     const {id, contactsList, contactsGroups} = data
@@ -59,7 +66,7 @@ export const ContactsTabs = () => {
     const handleClickAddingContactBtn = (contact: IContact) => {
         try {
             addContact(id, contact, data)
-                .then(r => dispatch(addNewContact(id, contact)))
+                .then(r => addNewContact(id, contact))
         } catch (e) {
             console.log(e)
         }
@@ -68,7 +75,7 @@ export const ContactsTabs = () => {
     const handleClickAddingTabBtn = (groupName: string) => {
         try {
             addGroup(id, groupName, data)
-                .then(r => dispatch(addNewGroup(id, groupName)))
+                .then(r =>addNewGroup(id, groupName))
         } catch (e) {
             console.log(e)
         }
@@ -77,7 +84,7 @@ export const ContactsTabs = () => {
     const handleClickRemoveContactBtn = (contact: IContact) => {
         try {
             deleteContact(id, contact, data)
-                .then(r => dispatch(removeContact(id, contact)))
+                .then(r => removeContact(id, contact))
         } catch (e) {
             console.log(e)
         }
@@ -88,16 +95,17 @@ export const ContactsTabs = () => {
         e.stopPropagation()
         try {
             removeGroupName(id, groupName, data)
-                .then(r => dispatch(removeGroup(id, groupName)))
+                .then(r => removeGroup(id, groupName))
         } catch (e) {
             console.log(e)
         }
+
     }
 
     return (
         <Box className={classes.box}>
             <Tabs
-                orientation={isSm || isMd ? 'horizontal' : 'vertical'}
+                orientation={isSm ? 'horizontal' : 'vertical'}
                 variant='scrollable'
                 value={value}
                 onChange={handleChange}
@@ -117,7 +125,7 @@ export const ContactsTabs = () => {
                                 />
                             </>
                         }
-                        {...a11yProps(isSm || isMd, index)}
+                        {...a11yProps(isSm, index)}
                     />
                 )}
                 <AddingTab contact={data} onClickAddingBtn={handleClickAddingTabBtn}/>
@@ -126,7 +134,7 @@ export const ContactsTabs = () => {
             {contactsGroups.map(((groupName, index) =>
                     <TabPanel key={index} value={value} index={index}>
                         <AddingContact groupNames={contactsGroups} onClickAddingBtn={handleClickAddingContactBtn}/>
-                        {groupName === 'all' && contactsList.length > 0 && contactsList
+                        {groupName === 'all' && !search && contactsList.length > 0 && contactsList
                             .map((contact: IContact) =>
                                 <Contact key={contact.id} contact={contact}
                                          onClickRemoveBtn={handleClickRemoveContactBtn}/>
@@ -142,4 +150,4 @@ export const ContactsTabs = () => {
             ))}
         </Box>
     );
-}
+})

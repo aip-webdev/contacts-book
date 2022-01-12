@@ -7,7 +7,7 @@ import useStyles from "./styles";
 import {ISignBtnProps} from "../AuthForm";
 
 
-export const SignUpBtnGroup = (props: ISignBtnProps) => {
+export const SignUpBtnGroup = React.memo((props: ISignBtnProps) => {
     const {inputError, handleClick, user} = props;
     const classes = useStyles()
     let navigate = useNavigate();
@@ -23,5 +23,5 @@ export const SignUpBtnGroup = (props: ISignBtnProps) => {
                 Sign in
             </Button></>
     )
-}
+})
 

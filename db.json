@@ -19,6 +19,11 @@
       "id": "someId4",
       "email": "some4@gmail.com",
       "password": "somePass4"
+    },
+    {
+      "id": "yn46c2rnzci",
+      "email": "aipborob@gmail.com",
+      "password": "11223344"
     }
   ],
   "contacts": [
@@ -101,6 +106,22 @@
       "contactsGroups": [
         "all",
         "friends"
+      ]
+    },
+    {
+      "id": "yn46c2rnzci",
+      "contactsList": [
+        {
+          "email": "some@gmail.com",
+          "name": "Name",
+          "lastName": "Lastname",
+          "tel": "88002000600",
+          "group": "all",
+          "id": "6ywam7ooegu"
+        }
+      ],
+      "contactsGroups": [
+        "all"
       ]
     }
   ]

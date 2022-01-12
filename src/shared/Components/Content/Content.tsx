@@ -6,11 +6,11 @@ interface ILayoutProps {
 	children?: React.ReactNode
 }
 
-export const Content = ({ children }: ILayoutProps) => {
+export const Content = React.memo(({ children }: ILayoutProps) => {
 	const classes = useStyles()
 	return (
 		<Box className={classes.content}>
 			{children}
 		</Box>
 	)
-}
+})

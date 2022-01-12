@@ -8,7 +8,7 @@ interface IAddingButton {
     classname?: any
 }
 
-export function AddingButton({onClickAddingBtn, classname}: IAddingButton) {
+export const AddingButton = React.memo(({onClickAddingBtn, classname}: IAddingButton) => {
     const classes = useStyles()
     return (
         <Button
@@ -19,4 +19,4 @@ export function AddingButton({onClickAddingBtn, classname}: IAddingButton) {
             <Check/>
         </Button>
     )
-}
+})

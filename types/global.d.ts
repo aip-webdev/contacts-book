@@ -1,19 +1,13 @@
 import {
-    LogoutAction,
-    LoginAction,
-    CreateNewUserAction,
-    AddNewGroupAction,
-    AddNewContactDataAction,
     AddNewContactAction,
+    AddNewContactDataAction,
+    AddNewGroupAction,
+    CreateNewUserAction,
+    LoginAction,
+    LogoutAction,
     RemoveContactAction,
-    FetchContactsAction,
-    FetchContactsSuccessAction,
-    FetchContactsFailureAction,
-    SetSearchValueAction,
     RemoveGroupAction,
-    FetchUsersAction,
-    FetchUsersSuccessAction,
-    FetchUsersFailureAction
+    SetSearchValueAction
 } from "../src/context/actions";
 
 export interface IStateData {
@@ -23,7 +17,16 @@ export interface IStateData {
     authUserId: string,
     searchField: string,
     loading: boolean,
-    error: boolean
+    error: boolean,
+    login: (id: string) => void,
+    logout: () => void,
+    createNewUser: (user: IUser) => void,
+    addNewGroup: (id: string, groupName: string) => void,
+    removeGroup: (id: string, groupName: string) => void,
+    addNewContact: (id: string, contact: IContact) => void,
+    removeContact: (id: string, contact: IContact) => void,
+    addNewContactData: (contactData:IContacts) => void,
+    setSearchValue: (searchValue: string) => void,
 }
 
 export interface IUser {
@@ -47,6 +50,13 @@ export interface IContacts {
     contactsGroups: string [],
 }
 
-export type MyAction = FetchContactsAction | FetchContactsSuccessAction | FetchContactsFailureAction | LoginAction | LogoutAction |
-    CreateNewUserAction | AddNewGroupAction | AddNewContactDataAction | AddNewContactAction | RemoveContactAction |
-    SetSearchValueAction | RemoveGroupAction | FetchUsersAction | FetchUsersSuccessAction | FetchUsersFailureAction
+export type MyAction =
+    | LoginAction
+    | LogoutAction
+    | CreateNewUserAction
+    | AddNewGroupAction
+    | AddNewContactDataAction
+    | AddNewContactAction
+    | RemoveContactAction
+    | SetSearchValueAction
+    | RemoveGroupAction

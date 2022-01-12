@@ -10,14 +10,14 @@ interface TabPanelProps {
 }
 
 
-export const TabPanel = (props: TabPanelProps) => {
+export const TabPanel = React.memo((props: TabPanelProps) => {
     const {children, value, index, ...other} = props;
     const classes = useStyles();
-    const {isSm, isMd} = useMediaSize()
+    const {isSm} = useMediaSize()
     const a11yProps = (isSm: boolean, index: number) => (isSm ?
         {
             id:`simple-tabpanel-${index}`,
-        'aria-labelledby':`simple-tab-${index}`
+            'aria-labelledby':`simple-tab-${index}`
         } :
         {
             id:`vertical-tabpanel-${index}`,
@@ -28,7 +28,7 @@ export const TabPanel = (props: TabPanelProps) => {
             className={classes.tabPanel}
             role="tabpanel"
             hidden={value !== index}
-            {...a11yProps(isSm || isMd, index)}
+            {...a11yProps(isSm, index)}
             {...other}
         >
             {value === index && (
@@ -38,4 +38,4 @@ export const TabPanel = (props: TabPanelProps) => {
             )}
         </div>
     )
-}
+})

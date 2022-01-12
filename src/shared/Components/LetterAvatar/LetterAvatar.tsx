@@ -31,8 +31,8 @@ interface ILetterAvatar {
     lastname?: string
 }
 
-export const LetterAvatar = ({firstName='', lastname=''}: ILetterAvatar) => {
+export const LetterAvatar = React.memo(({firstName='', lastname=''}: ILetterAvatar) => {
     return (
         <Avatar {...stringAvatar(`${firstName} ${lastname}`)} />
     )
-}
+})

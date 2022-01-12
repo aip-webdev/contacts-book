@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     },
     tabInput: {
         width: 'auto',
-        minWidth: '150px !important',
+        minWidth: '130px !important',
         maxWidth: '200px !important',
         [theme.breakpoints.up('md')]: {
             minWidth: '100%',

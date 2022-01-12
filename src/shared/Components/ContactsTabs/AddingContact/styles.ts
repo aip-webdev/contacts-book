@@ -26,7 +26,7 @@ const useStyles = makeStyles({
     openInputFieldsButton: {
         color: `${colors.pine08} !important`,
         minWidth: '40px !important',
-        border: `2.5px ${colors.pine08} solid !important`,
+        boxShadow: '2px 1px 2px 1px rgba(18, 69, 89, 0.9)',
         borderRadius: '50% !important',
         height: '40px',
         fontWeight: '700 !important',
@@ -36,8 +36,9 @@ const useStyles = makeStyles({
         margin: '0 !important',
         transition: 'all 0.25s linear !important',
         '&:hover': {
-            border: `12.5px transparent solid !important`,
+            boxShadow: '2px 1px 2px 1px rgba(18, 69, 89, 0.9) inset',
         },
+
 
     },
     removeBtn: {
@@ -65,8 +66,7 @@ const useStyles = makeStyles({
     stack: {
         display: 'flex !important',
         position: 'relative',
-        margin: '0 1em 0 0',
-        paddingBottom: '3em',
+        margin: '0 0 1em 0',
         flexFlow: 'column wrap !important',
         alignContent: 'flex-start',
         justifyContent: 'flex-start',

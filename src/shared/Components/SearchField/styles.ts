@@ -6,7 +6,7 @@ const useStyles = makeStyles( {
         minWidth: '140px !important',
         margin: '0 auto 0 0 !important',
         position: 'relative',
-
+        minHeight: '50px',
     },
     textField: {
         '& .MuiInputLabel-root, .MuiOutlinedInput-root': {

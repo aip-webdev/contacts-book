@@ -8,7 +8,7 @@ interface IModalProps {
 	children: React.ReactNode
 }
 
-export function Modal({ children }: IModalProps) {
+export const Modal = React.memo(({ children }: IModalProps) => {
 	const [node, setNode] = useState<Element>()
 	const classes = useStyles()
 	const ref = useRef(null)
@@ -29,4 +29,4 @@ export function Modal({ children }: IModalProps) {
 		</div>,
 		node,
 	)
-}
+})

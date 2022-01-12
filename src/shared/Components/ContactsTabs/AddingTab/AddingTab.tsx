@@ -12,7 +12,7 @@ interface IAddingTab {
     onClickAddingBtn: (prop: any) => void
 }
 
-export const AddingTab = (props: IAddingTab) => {
+export const AddingTab = React.memo((props: IAddingTab) => {
     const ref = useRef(null)
     const classes = useStyles()
     const {contact, onClickAddingBtn} = props
@@ -54,6 +54,7 @@ export const AddingTab = (props: IAddingTab) => {
                         type='text'
                         placeholder='Add group'
                         value={newGroupVal}
+                        onBlur={() => setNewGroupVal('')}
                         onKeyPress={(e) => handleKeyPressAddingBtn(e)}
                         onChange={(e) => handleTabInputChange(e)}
 
@@ -64,4 +65,4 @@ export const AddingTab = (props: IAddingTab) => {
             {...a11yProps(isSm || isMd, contactsGroups.length)}
         />
     );
-};
+})

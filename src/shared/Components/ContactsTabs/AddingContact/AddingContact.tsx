@@ -12,40 +12,40 @@ interface IAddingContact {
     onClickAddingBtn: (contact: IContact) => void
 }
 
-export function AddingContact({groupNames, onClickAddingBtn}: IAddingContact) {
-    const [groupName, setGroupName] = useState('all')
-    const [contactFields, setContactFields] = useState({name: '', lastName: '', email: '', tel: ''});
-    const [isVisibleContactInputs, setIsVisibleContactInputs] = useState(false)
-    const classes = useStyles()
-    const handleInputChange = (e: ChangeEvent, key: string) => {
-        // @ts-ignore
-        let value = e.target?.value
-        setContactFields({...contactFields, [key]: value})
-    }
+export const AddingContact = React.memo(({groupNames, onClickAddingBtn}: IAddingContact) => {
+        const [groupName, setGroupName] = useState('all')
+        const [contactFields, setContactFields] = useState({name: '', lastName: '', email: '', tel: ''});
+        const [isVisibleContactInputs, setIsVisibleContactInputs] = useState(false)
+        const classes = useStyles()
+        const handleInputChange = (e: ChangeEvent, key: string) => {
+            // @ts-ignore
+            let value = e.target?.value
+            setContactFields({...contactFields, [key]: value})
+        }
 
-    const handleClickAddingButton = () => {
-        onClickAddingBtn(addStringId({...contactFields, group: groupName}) as IContact)
-        setIsVisibleContactInputs(false)
-        setContactFields({name: '', lastName: '', email: '', tel: ''})
-        setGroupName('all')
-    }
+        const handleClickAddingButton = () => {
+            onClickAddingBtn(addStringId({...contactFields, group: groupName}) as IContact)
+            setIsVisibleContactInputs(false)
+            setContactFields({name: '', lastName: '', email: '', tel: ''})
+            setGroupName('all')
+        }
 
-    return (
-        <Stack className={classes.stack}>
-            {!isVisibleContactInputs &&
+        return (
+            <Stack className={classes.stack}>
+                {!isVisibleContactInputs &&
                 <Button
                     className={classes.openInputFieldsButton}
                     onClick={() => setIsVisibleContactInputs(true)}
                 >+
                 </Button>
-            }
-            {isVisibleContactInputs &&
+                }
+                {isVisibleContactInputs &&
                 <>
                     <TransparentSelect labelName='Group name' list={groupNames} onChangeSelect={setGroupName}/>
                     {Object.keys(contactFields).map((key, index) => {
                         return (
                             <TextField
-                                key={index}
+                                key={index + key}
                                 aria-pressed={true}
                                 className={classes.tabInput}
                                 type='text'
@@ -66,7 +66,8 @@ export function AddingContact({groupNames, onClickAddingBtn}: IAddingContact) {
                     <AddingButton classname={classes.addingBtn} onClickAddingBtn={handleClickAddingButton}/>
                     <RemoveButton classname={classes.removeBtn} onClickRemoveBtn={() => setIsVisibleContactInputs(false)}/>
                 </>
-            }
-        </Stack>
-    );
-}
+                }
+            </Stack>
+        );
+    }
+)

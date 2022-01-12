@@ -8,10 +8,9 @@ interface IRemoveButton {
   classname?: any,
 }
 
-export function RemoveButton({onClickRemoveBtn, classname}: IRemoveButton) {
-
+export const RemoveButton = React.memo(({onClickRemoveBtn, classname}: IRemoveButton) => {
   const classes = useStyles()
   return (
       <Button type='button' className={classname ?? classes.removeBtn} onClick={onClickRemoveBtn} startIcon={<CancelPresentation/>}/>
-  );
-}
+  )
+})

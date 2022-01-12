@@ -18,7 +18,7 @@ interface IAuthProps {
     authUser: (user: IUser) => { type:string, message:string } | undefined,
 }
 
-export const AuthForm = ({children, authUser}: IAuthProps) => {
+export const AuthForm = React.memo(({children, authUser}: IAuthProps) => {
     const classes = useStyles()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -136,4 +136,4 @@ export const AuthForm = ({children, authUser}: IAuthProps) => {
             </Box>
         </Container>
     );
-};
+})
