@@ -1,20 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react'
+import CircularProgress from '@mui/material/CircularProgress';
+import {Modal} from "../Modal";
 
 export const Loading = React.memo(() => {
-	const [node, setNode] = useState<Element>()
-	useEffect(() => {
-		setNode(document.querySelector('#modal__root') ?? undefined)
-	}, [])
-	if (!node) {
-		return null
-	}
-	return ReactDOM.createPortal(
-		<div >
-			<div >
-				<div>Loading</div>
-			</div>
-		</div>,
-		node,
+	return (
+		<Modal>
+			<CircularProgress disableShrink/>
+		</Modal>
 	)
 })
