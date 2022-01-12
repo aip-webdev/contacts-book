@@ -4,3 +4,5 @@ events.json
 /src/cache/
 
 /.cert/
+/dist/client/*
+/dist/server/*
