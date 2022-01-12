@@ -4,7 +4,7 @@ import useStyles from "./styles";
 import {Button} from "@mui/material";
 
 interface IAddingButton {
-    onClickAddingBtn: (e: MouseEvent) => void,
+    onClickAddingBtn: () => void,
     classname?: any
 }
 
@@ -14,7 +14,7 @@ export const AddingButton = React.memo(({onClickAddingBtn, classname}: IAddingBu
         <Button
             type='button'
             className={classname ?? classes.addingBtn}
-            onClick={(e) => onClickAddingBtn}
+            onClick={onClickAddingBtn}
         >
             <Check/>
         </Button>

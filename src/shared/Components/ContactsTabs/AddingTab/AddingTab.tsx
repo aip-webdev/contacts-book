@@ -27,8 +27,7 @@ export const AddingTab = React.memo((props: IAddingTab) => {
         setNewGroupVal(value)
     }
 
-    const handleClickAddingBtn = (e: MouseEvent) => {
-        e.stopPropagation()
+    const handleClickAddingBtn = () => {
         onClickAddingBtn(newGroupVal.trim().toLowerCase())
         setNewGroupVal('')
     }
@@ -46,7 +45,7 @@ export const AddingTab = React.memo((props: IAddingTab) => {
         <Tab
             ref={ref}
             className={classes.addingTab}
-            onClick={() => setNewGroupVal(` `)}
+            onClick={() => setNewGroupVal(` ${newGroupVal.trim()}`)}
             label={
                 <>
                     <TextField
@@ -55,7 +54,6 @@ export const AddingTab = React.memo((props: IAddingTab) => {
                         type='text'
                         placeholder='Add group'
                         value={newGroupVal}
-                        onBlur={() => setNewGroupVal('')}
                         onKeyPress={(e) => handleKeyPressAddingBtn(e)}
                         onChange={(e) => handleTabInputChange(e)}
 
