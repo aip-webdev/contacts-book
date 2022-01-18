@@ -1,10 +1,10 @@
 import {makeStyles} from "@mui/styles";
 import colors from "../../../utils/enums/colors";
-import theme from "../../../styles/theme";
+import theme from "../../../styles/main-theme";
 
 const useStyles = makeStyles({
     box: {
-        backgroundColor: colors.pistachioL,
+        backgroundColor: colors.mainSecond,
         display: 'flex',
         flexDirection: 'column',
         height: 'calc(100vh - 65px)',
@@ -21,41 +21,42 @@ const useStyles = makeStyles({
             width: '7px',
             height: '4px',
             zIndex: 100,
-            backgroundColor: colors.pistachioLT,
+            backgroundColor: colors.mainSecond06,
         },
 
         '&::-webkit-scrollbar-track': {
             borderRadius: '10px',
             '-webkit-box-shadow': 'inset 0 0 6px rgba(0, 0, 0, 0.4)',
-            backgroundColor: colors.pistachioL,
+            backgroundColor: colors.mainSecond08,
         },
 
         '&::-webkit-scrollbar-thumb': {
             borderRadius: '10px',
             '-webkit-box-shadow': 'inset 0 0 6px rgba(0, 0, 0, 0.4)',
-            backgroundColor: colors.pistachioLT,
+            backgroundColor: colors.mainSecond06,
         },
 
         '&::-webkit-scrollbar-thumb:hover': {
             borderRadius: '3px',
-            backgroundColor: colors.pine
+            backgroundColor: colors.mainFirst
         },
     },
     closeTabButton: {
         top: '50%',
         color: '#124559 !important',
-        right: '-3%',
+        right: '-4%',
         // @ts-ignore
         position: 'absolute !important',
         transform: 'translateY(-50%)',
         backgroundColor: 'transparent !important',
         [theme.breakpoints.up('md')]: {
-            right: '1%',
+            right: '0%',
         },
     },
     tabs: {
         borderRight: 1,
-        borderColor: colors.pine,
+        borderColor: colors.mainFirst,
+        minHeight: '60px !important',
         padding: '0.5em 1em',
         [theme.breakpoints.up('md')]: {
             minWidth: '180px',
@@ -70,14 +71,14 @@ const useStyles = makeStyles({
             maxWidth: '260px',
         },
         '& .Mui-selected': {
-            color: `${colors.pine} !important`,
-            borderColor: `${colors.pine} !important`,
+            color: `${colors.mainFirst} !important`,
+            borderColor: `${colors.mainFirst} !important`,
         },
         '& .MuiTabs-indicator': {
-            backgroundColor: colors.pine07
+            backgroundColor: colors.mainFirst06
         },
         '& .MuiButtonBase-root': {
-            color: `${colors.pine} !important`,
+            color: `${colors.mainFirst} !important`,
             fontWeight: '700 !important',
             fontSize: ' 1rem !important',
             lineHeight: '1.5 !important',
@@ -85,7 +86,7 @@ const useStyles = makeStyles({
             flexDirection: 'row',
             '& .MuiOutlinedInput-root': {
                 opacity: '1',
-                color: `${colors.pistachioL} !important`,
+                color: `${colors.mainSecond08} !important`,
                 backgroundColor: `transparent !important`,
             },
 

@@ -1,17 +1,15 @@
 import {makeStyles} from "@mui/styles";
 import colors from "../../../utils/enums/colors";
-import theme from "../../../styles/theme";
+import theme from "../../../styles/main-theme";
 
 const useStyles = makeStyles({
     '& .MuiPaper-root': {
-        backgroundColor: colors.pine,
         minHeight: '65px',
         maxHeight: '65px',
         position: 'fixed',
         width: '100vw',
     },
     appBar: {
-        backgroundColor: `${colors.pine} !important`,
         minHeight: '65px',
         maxHeight: '65px',
         // @ts-ignore
@@ -36,7 +34,7 @@ const useStyles = makeStyles({
         },
     },
     title: {
-        color: colors.pistachioLT,
+        color: colors.mainSecond,
         fontSize: '1.35rem !important',
         fontWeight: '500 !important',
         letterSpacing: '0.08em !important',

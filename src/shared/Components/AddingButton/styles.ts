@@ -5,7 +5,7 @@ const useStyles = makeStyles({
     addingBtn: {
         backgroundColor: 'transparent',
         border: 'none',
-        color: `${colors.pine} !important`,
+        color: `${colors.mainFirst} !important`,
         marginLeft: '20px',
         width: '40px',
         '&:hover': {

@@ -9,6 +9,9 @@ import addNewContact from './actions/addNewContact';
 import removeContact from './actions/removeContact';
 import addNewContactData from './actions/addNewContactData';
 import setSearchValue from './actions/setSearchValue';
+
+import {IStateData} from "../../types/global";
+import {StoreApiWithSubscribeWithSelector} from "zustand/middleware";
 import fetchUsers from './actions/fetchUsers';
 
 import {IStateData} from "../../types/global";

@@ -1,13 +1,19 @@
 import {
-    AddNewContactAction,
-    AddNewContactDataAction,
-    AddNewGroupAction,
-    CreateNewUserAction,
-    LoginAction,
     LogoutAction,
+    LoginAction,
+    CreateNewUserAction,
+    AddNewGroupAction,
+    AddNewContactDataAction,
+    AddNewContactAction,
     RemoveContactAction,
+    FetchContactsAction,
+    FetchContactsSuccessAction,
+    FetchContactsFailureAction,
+    SetSearchValueAction,
     RemoveGroupAction,
-    SetSearchValueAction
+    FetchUsersAction,
+    FetchUsersSuccessAction,
+    FetchUsersFailureAction
 } from "../src/context/actions";
 
 export interface IStateData {

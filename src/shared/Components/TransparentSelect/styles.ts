@@ -1,11 +1,10 @@
 import {makeStyles} from "@mui/styles";
 import colors from "../../../utils/enums/colors";
-import theme from "../../../styles/theme";
-
+import theme from "../../../styles/main-theme";
 
 const useStyles = makeStyles({
     formControl: {
-        color: colors.pine,
+        color: colors.mainFirst,
         flex: '1 0 auto',
         // @ts-ignore
         position: 'absolute !important',
@@ -16,7 +15,7 @@ const useStyles = makeStyles({
             position: 'relative !important',
         },
         '& #demo-simple-select-standard-label': {
-            color: colors.pine,
+            color: colors.mainFirst,
         },
     }
 })

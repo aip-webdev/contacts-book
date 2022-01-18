@@ -31,43 +31,43 @@ export const AddingContact = React.memo(({groupNames, onClickAddingBtn}: IAdding
         }
 
         return (
-            <Stack className={classes.stack}>
-                {!isVisibleContactInputs &&
+            !isVisibleContactInputs ?
                 <Button
                     className={classes.openInputFieldsButton}
                     onClick={() => setIsVisibleContactInputs(true)}
                 >+
-                </Button>
-                }
-                {isVisibleContactInputs &&
-                <>
-                    <TransparentSelect labelName='Group name' list={groupNames} onChangeSelect={setGroupName}/>
-                    {Object.keys(contactFields).map((key, index) => {
-                        return (
-                            <TextField
-                                key={index + key}
-                                aria-pressed={true}
-                                className={classes.tabInput}
-                                type='text'
-                                placeholder={`Add ${key}`}
-                                value={Object.values(contactFields)[index]}
-                                onBlur={() => setContactFields({
-                                    ...contactFields,
-                                    [key]: `${Object.values(contactFields)[index].trim()}`
-                                })}
-                                onClick={() => setContactFields({
-                                    ...contactFields,
-                                    [key]: ` ${Object.values(contactFields)[index].trim()}`
-                                })}
-                                onChange={(e) => handleInputChange(e, key)}
-                            />
-                        )
-                    })}
-                    <AddingButton classname={classes.addingBtn} onClickAddingBtn={handleClickAddingButton}/>
-                    <RemoveButton classname={classes.removeBtn} onClickRemoveBtn={() => setIsVisibleContactInputs(false)}/>
-                </>
-                }
-            </Stack>
+                </Button> :
+                <Stack className={classes.stack}>
+
+                    <>
+                        <TransparentSelect labelName='Group name' list={groupNames} onChangeSelect={setGroupName}/>
+                        {Object.keys(contactFields).map((key, index) => {
+                            return (
+                                <TextField
+                                    key={index + key}
+                                    aria-pressed={true}
+                                    className={classes.tabInput}
+                                    type='text'
+                                    placeholder={`Add ${key}`}
+                                    value={Object.values(contactFields)[index]}
+                                    onBlur={() => setContactFields({
+                                        ...contactFields,
+                                        [key]: `${Object.values(contactFields)[index].trim()}`
+                                    })}
+                                    onClick={() => setContactFields({
+                                        ...contactFields,
+                                        [key]: ` ${Object.values(contactFields)[index].trim()}`
+                                    })}
+                                    onChange={(e) => handleInputChange(e, key)}
+                                />
+                            )
+                        })}
+                        <AddingButton classname={classes.addingBtn} onClickAddingBtn={handleClickAddingButton}/>
+                        <RemoveButton classname={classes.removeBtn}
+                                      onClickRemoveBtn={() => setIsVisibleContactInputs(false)}/>
+                    </>
+                </Stack>
+
         );
     }
 )

@@ -1,11 +1,13 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
 import Container from "@mui/material/Container";
-import {Box, TextField} from "@mui/material";
+import {Box, CssBaseline, TextField} from "@mui/material";
 import useStyles from "./styles";
 import {props} from "ramda";
 import {IUser} from "../../../../types/global";
 import {addStringId} from "../../../utils/react/generateRandomIndex";
 import {validateEmail} from "../../../utils/validateEmail";
+import authTheme from "../../../styles/auth-theme";
+import {ThemeProvider} from "@emotion/react";
 
 export interface ISignBtnProps {
     inputError?: boolean,
@@ -15,7 +17,7 @@ export interface ISignBtnProps {
 
 interface IAuthProps {
     children: React.ReactNode,
-    authUser: (user: IUser) => { type:string, message:string } | undefined,
+    authUser: (user: IUser) => { type: string, message: string } | undefined,
 }
 
 export const AuthForm = React.memo(({children, authUser}: IAuthProps) => {
@@ -56,8 +58,8 @@ export const AuthForm = React.memo(({children, authUser}: IAuthProps) => {
             let res = authUser({id, email, password})
             if (!!res) {
                 res.type === 'mailError' ?
-                    setErrorMail({errorMail: true, errorMailText: res.message} ) :
-                    setErrorPass({errorPass: true, errorPassText: res.message} )
+                    setErrorMail({errorMail: true, errorMailText: res.message}) :
+                    setErrorPass({errorPass: true, errorPassText: res.message})
             } else {
                 setEmail('');
                 setPassword('');
@@ -106,34 +108,37 @@ export const AuthForm = React.memo(({children, authUser}: IAuthProps) => {
     }, [children, errorMail && errorPass, user])
 
     return (
-        <Container className={classes.container}>
-            <Box className={classes.box} component='form' autoComplete="off">
-                <TextField
-                    error={errorMail}
-                    className={classes.input}
-                    id="outlined-required"
-                    label="E-mail"
-                    type="email"
-                    autoComplete="email"
-                    variant='outlined'
-                    helperText={errorMailText}
-                    value={email}
-                    onChange={(e) => handleChangeLogin(e)}
-                />
+        <ThemeProvider theme={authTheme}>
+            <CssBaseline/>
+            <Container className={classes.container}>
+                <Box className={classes.box} component='form' autoComplete="off">
+                    <TextField
+                        error={errorMail}
+                        className={classes.input}
+                        id="outlined-required"
+                        label="E-mail"
+                        type="email"
+                        autoComplete="email"
+                        variant='outlined'
+                        helperText={errorMailText}
+                        value={email}
+                        onChange={(e) => handleChangeLogin(e)}
+                    />
 
-                <TextField
-                    error={errorPass}
-                    className={classes.input}
-                    id="outlined-password-input"
-                    label="Password"
-                    type="password"
-                    autoComplete="current-password"
-                    helperText={errorPassText}
-                    value={password}
-                    onChange={(e) => handleChangePassword(e)}
-                />
-                {!!childWithProps && childWithProps}
-            </Box>
-        </Container>
+                    <TextField
+                        error={errorPass}
+                        className={classes.input}
+                        id="outlined-password-input"
+                        label="Password"
+                        type="password"
+                        autoComplete="current-password"
+                        helperText={errorPassText}
+                        value={password}
+                        onChange={(e) => handleChangePassword(e)}
+                    />
+                    {!!childWithProps && childWithProps}
+                </Box>
+            </Container>
+        </ThemeProvider>
     );
 })

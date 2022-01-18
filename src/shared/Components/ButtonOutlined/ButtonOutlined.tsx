@@ -19,7 +19,7 @@ export const ButtonOutlined = React.memo((props: IButtonOutlined) => {
         <Button
             className={btnClassName}
             onClick={onClick}
-            variant='outlined'
+            variant='contained'
             endIcon={btnIcon}
         >
             {!isSm && text}

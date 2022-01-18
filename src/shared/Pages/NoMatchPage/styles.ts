@@ -1,10 +1,8 @@
-import colors from "../../../utils/enums/colors";
 import {makeStyles} from "@mui/styles";
 
 const useStyles = makeStyles( {
   container: {
-    color: colors.black06,
-    display: 'grid',
+    display: 'grid !important',
     placeItems: 'center',
     height: '100vh',
   },

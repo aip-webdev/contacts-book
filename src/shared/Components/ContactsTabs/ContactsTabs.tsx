@@ -2,17 +2,18 @@ import React, {useEffect, useState} from 'react';
 import useStyles from "./styles";
 import {TabPanel} from "./TabPanel";
 import {IContact, IContacts} from "../../../../types/global";
+import {useAppStore} from "../../../hooks/useAppStore";
 import {Contact} from "../Contact";
 import {Box, Tab, Tabs} from "@mui/material";
 import {AddingTab} from "./AddingTab";
 import {Loading} from "../Loading";
+import {addNewContact, addNewGroup, removeContact, removeGroup} from "../../../context/actions";
 import {AddingContact} from "./AddingContact";
 import {useMediaSize} from "../../../hooks/useMediaSize";
 import {Close} from '@mui/icons-material';
 import useStore from "../../../store";
 import {find, propEq} from "ramda";
 import shallow from "zustand/shallow";
-import {addContact, addGroup, deleteContact, removeGroupName} from "../../../store/api";
 
 export const a11yProps = (isSm: boolean, index: number) => (isSm ?
     {
@@ -72,15 +73,6 @@ export const ContactsTabs = React.memo(() => {
         }
     }
 
-    const handleClickAddingTabBtn = (groupName: string) => {
-        try {
-            addGroup(id, groupName, data)
-                .then(r =>addNewGroup(id, groupName))
-        } catch (e) {
-            console.log(e)
-        }
-    }
-
     const handleClickRemoveContactBtn = (contact: IContact) => {
         try {
             deleteContact(id, contact, data)
@@ -99,7 +91,6 @@ export const ContactsTabs = React.memo(() => {
         } catch (e) {
             console.log(e)
         }
-
     }
 
     return (
@@ -128,7 +119,7 @@ export const ContactsTabs = React.memo(() => {
                         {...a11yProps(isSm, index)}
                     />
                 )}
-                <AddingTab contact={data} onClickAddingBtn={handleClickAddingTabBtn}/>
+                <AddingTab contact={data} />
             </Tabs>
 
             {contactsGroups.map(((groupName, index) =>

@@ -12,7 +12,7 @@ interface IAddingTab {
     onClickAddingBtn: (prop: any) => void
 }
 
-export const AddingTab = React.memo((props: IAddingTab) => {
+export const AddingTab = (props: IAddingTab) => {
     const ref = useRef(null)
     const classes = useStyles()
     const {contact, onClickAddingBtn} = props
@@ -32,6 +32,10 @@ export const AddingTab = React.memo((props: IAddingTab) => {
         setNewGroupVal('')
     }
 
+    const handleClickOnInput = (e:any) => {
+        setNewGroupVal(` ${newGroupVal.trim()}`)
+    }
+
     const handleKeyPressAddingBtn = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if ( e.key === 'Enter') {
             onClickAddingBtn(newGroupVal.trim().toLowerCase())
@@ -43,25 +47,26 @@ export const AddingTab = React.memo((props: IAddingTab) => {
 
     return (
         <Tab
-            ref={ref}
             className={classes.addingTab}
-            onClick={() => setNewGroupVal(` ${newGroupVal.trim()}`)}
             label={
                 <>
                     <TextField
+                        ref={ref}
                         aria-pressed={true}
                         className={classes.tabInput}
                         type='text'
                         placeholder='Add group'
                         value={newGroupVal}
+                        onClick={handleClickOnInput}
                         onKeyPress={(e) => handleKeyPressAddingBtn(e)}
                         onChange={(e) => handleTabInputChange(e)}
 
+
                     />
-                    {newGroupVal && <AddingButton onClickAddingBtn={handleClickAddingBtn} />}
+                    {newGroupVal && <AddingButton onClickAddingBtn={handleClickAddingBtn}/>}
                 </>
             }
             {...a11yProps(isSm || isMd, contactsGroups.length)}
         />
     );
-})
+};

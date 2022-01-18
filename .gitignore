@@ -3,6 +3,9 @@
 events.json
 /src/cache/
 
-/.cert/
-/dist/client/*
-/dist/server/*
+# Logs
+npm-debug.log
+
+# Block build and server
+/dist
+/server

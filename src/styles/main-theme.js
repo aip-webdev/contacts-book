@@ -17,14 +17,30 @@ const theme = createTheme({
         body: {
           overflowX: 'hidden',
           fontWeight: '400',
-          color: colors.pistachioLT,
-          backgroundColor: colors.pistachio,
+          backgroundColor: colors.mainSecond06,
           width: '100vw',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          margin: '0',
+          height: '100vh',
         },
       }
     }
   },
+  palette: {
+    primary: {
+      main: colors.mainFirst,
+      contrastText: colors.mainSecond,
+    },
+    secondary: {
+      main: colors.mainFirst,
+      contrastText: colors.mainSecond,
+    },
+    text: {
+      primary: colors.mainFirst,
+      secondary: colors.mainSecond,
+      disabled: colors.black06,
+    }
+  }
 });
 
 export default theme;

@@ -22,34 +22,9 @@ const useStyles = makeStyles( {
     },
     input: {
         marginBottom: '2rem !important',
-        '& .MuiInputLabel-root, .MuiOutlinedInput-root': {
-            color: colors.pistachioLT,
-            '&.Mui-focused': {
-                color: colors.pistachioL,
-                borderColor: colors.pistachioLT,
-            }
-        },
         '& .MuiOutlinedInput-notchedOutline, .MuiOutlinedInput-input': {
-            color: `${colors.pistachioLT} !important`,
-            borderColor: `${colors.pistachioLT} !important`,
+            borderColor: `${colors.mainSecond06}`,
             borderWidth: '1.5px !important',
-            '&:-webkit-autofill': {
-                '-webkit-box-shadow': `0 0 0 100px ${colors.pine} inset`,
-                '-webkit-text-fill-color': `${colors.pistachioLT} !important`,
-            }
-        },
-        '& input:webkit-autofill': {
-            color: `${colors.pistachioL} !important`
-        },
-        '& .Mui-focused .MuiOutlinedInput-notchedOutline, fieldset, .MuiOutlinedInput-input': {
-            color: `${colors.pistachioL} !important`,
-            borderColor: `${colors.pistachioL} !important`,
-            borderWidth: '1.7px',
-        },
-        '& .MuiInputBase-root:hover .MuiOutlinedInput-notchedOutline': {
-            color: `${colors.pistachioL} !important`,
-            borderColor: `${colors.pistachioL} !important`,
-            borderWidth: '1.7px'
         },
     },
 })
