@@ -2,18 +2,17 @@ import React, {useEffect, useState} from 'react';
 import useStyles from "./styles";
 import {TabPanel} from "./TabPanel";
 import {IContact, IContacts} from "../../../../types/global";
-import {useAppStore} from "../../../hooks/useAppStore";
 import {Contact} from "../Contact";
 import {Box, Tab, Tabs} from "@mui/material";
 import {AddingTab} from "./AddingTab";
 import {Loading} from "../Loading";
-import {addNewContact, addNewGroup, removeContact, removeGroup} from "../../../context/actions";
 import {AddingContact} from "./AddingContact";
 import {useMediaSize} from "../../../hooks/useMediaSize";
 import {Close} from '@mui/icons-material';
 import useStore from "../../../store";
 import {find, propEq} from "ramda";
 import shallow from "zustand/shallow";
+import {addContact, deleteContact, removeGroupName} from "../../../store/api";
 
 export const a11yProps = (isSm: boolean, index: number) => (isSm ?
     {
