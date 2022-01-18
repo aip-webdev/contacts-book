@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "watch": "webpack-dev-server --config webpack.client.js --hot --mode development",
     "dev": "webpack --config webpack.client.js --mode development",
     "build": "webpack --config webpack.client.js --mode production",
     "start": "webpack --config webpack.server.js --mode production && node ./public/server/main.js"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
