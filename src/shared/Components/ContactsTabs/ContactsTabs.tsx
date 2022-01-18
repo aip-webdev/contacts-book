@@ -66,10 +66,6 @@ export const ContactsTabs = React.memo(() => {
         addNewContact(id, contact)
     }
 
-    const handleClickAddingTabBtn = (groupName: string) => {
-        addNewGroup(id, groupName)
-    }
-
     const handleClickRemoveContactBtn = (contact: IContact) => {
         removeContact(id, contact)
     }
@@ -106,7 +102,7 @@ export const ContactsTabs = React.memo(() => {
                         {...a11yProps(isSm, index)}
                     />
                 )}
-                <AddingTab contact={data} onClickAddingBtn={handleClickAddingTabBtn}/>
+                <AddingTab contact={data} />
             </Tabs>
 
             {contactsGroups.map(((groupName, index) =>

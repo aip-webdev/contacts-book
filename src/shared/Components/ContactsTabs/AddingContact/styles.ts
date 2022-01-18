@@ -1,12 +1,11 @@
 import {makeStyles} from "@mui/styles";
 import colors from "../../../../utils/enums/colors";
-import theme from "../../../../styles/theme";
+import theme from "../../../../styles/main-theme";
 
 const useStyles = makeStyles({
     addingBtn: {
         backgroundColor: 'transparent',
         border: 'none',
-        color: `${colors.pine} !important`,
         width: '50px',
         // @ts-ignore
         position: 'absolute !important',
@@ -18,13 +17,12 @@ const useStyles = makeStyles({
             bottom: 'initial !important',
             right: 'initial !important',
             '&:hover': {
-                backgroundColor: colors.black03,
+                backgroundColor: colors.black06,
                 borderRadius: '50% !important',
             }
         },
     },
     openInputFieldsButton: {
-        color: `${colors.pine08} !important`,
         minWidth: '40px !important',
         boxShadow: '2px 1px 2px 1px rgba(18, 69, 89, 0.9)',
         borderRadius: '50% !important',
@@ -55,8 +53,7 @@ const useStyles = makeStyles({
         border: 'none !important',
         margin: '0 !important',
         padding: '0 !important',
-        color: `${colors.pine} !important`,
-        backgroundColor: `transparent !important`,
+
         textAlign:"center",
         '&:hover': {
             color: `${colors.red} !important`,
@@ -67,6 +64,7 @@ const useStyles = makeStyles({
         display: 'flex !important',
         position: 'relative',
         margin: '0 0 1em 0',
+        padding: '0 0 3em 0',
         flexFlow: 'column wrap !important',
         alignContent: 'flex-start',
         justifyContent: 'flex-start',
@@ -81,15 +79,11 @@ const useStyles = makeStyles({
     },
 
     tabInput: {
-        backgroundImage: 'none !important',
-        backgroundColor: 'transparent!important',
-        color: `${colors.pine} !important`,
         opacity: '1',
         '& .MuiOutlinesInput-root': {
             opacity: '1',
         },
         '& .MuiInputBase-root .MuiOutlinedInput-notchedOutline, .MuiOutlinedInput-input': {
-            color: colors.pine,
             border: 'none',
             display: 'inline-flex',
             justifyContent: 'center',
@@ -101,7 +95,6 @@ const useStyles = makeStyles({
             padding: '0',
         },
         '& input[placeholder]': {
-            color: colors.pine,
             margin: '0 0 0.5em 0',
             [theme.breakpoints.up('md')]: {
                 textAlign: 'center',

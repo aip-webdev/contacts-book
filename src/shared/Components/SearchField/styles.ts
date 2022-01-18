@@ -10,40 +10,21 @@ const useStyles = makeStyles( {
     },
     textField: {
         '& .MuiInputLabel-root, .MuiOutlinedInput-root': {
-            color: colors.pistachioLT,
+            color: colors.mainSecond,
             '&.Mui-focused': {
-                color: colors.pistachioL,
-                borderColor: colors.pistachioLT,
+                color: colors.mainSecond,
             }
         },
         '& .MuiOutlinedInput-notchedOutline, .MuiOutlinedInput-input': {
-            color: `${colors.pistachioLT} !important`,
-            borderColor: `${colors.pistachioLT} !important`,
+            borderColor: `${colors.mainSecond} !important`,
             borderWidth: '1.5px !important',
-            '&:-webkit-autofill': {
-                '-webkit-box-shadow': `0 0 0 100px ${colors.pine} inset`,
-                '-webkit-text-fill-color': `${colors.pistachioLT} !important`,
-            }
-        },
-        '& input:webkit-autofill': {
-            color: `${colors.pistachioL} !important`
-        },
-        '& .Mui-focused .MuiOutlinedInput-notchedOutline, fieldset, .MuiOutlinedInput-input': {
-            color: `${colors.pistachioL} !important`,
-            borderColor: `${colors.pistachioL} !important`,
-            borderWidth: '1.7px',
-        },
-        '& .MuiInputBase-root:hover .MuiOutlinedInput-notchedOutline': {
-            color: `${colors.pistachioL} !important`,
-            borderColor: `${colors.pistachioL} !important`,
-            borderWidth: '1.7px'
         },
         '& .MuiOutlinedInput-input': {
             paddingRight: '35px'
         }
     },
     searchIcon: {
-        color:colors.pistachioLT,
+        color:colors.mainSecond,
         position: 'absolute',
         right: '5%',
         top: '50%',

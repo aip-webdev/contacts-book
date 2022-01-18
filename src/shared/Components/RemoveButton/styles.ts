@@ -7,8 +7,6 @@ const useStyles = makeStyles({
         border: 'none !important',
         margin: '0 !important',
         padding: '0 !important',
-        color: `${colors.pine} !important`,
-        backgroundColor: `transparent !important`,
         textAlign:"center",
         '&:hover': {
             color: `${colors.red} !important`,

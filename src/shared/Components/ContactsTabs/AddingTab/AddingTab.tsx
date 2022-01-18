@@ -6,21 +6,21 @@ import {a11yProps} from "../ContactsTabs";
 import {IContacts} from "../../../../../types/global";
 import {AddingButton} from "../../AddingButton";
 import {useMediaSize} from "../../../../hooks/useMediaSize";
+import useStore from "../../../../store";
 
 interface IAddingTab {
     contact: IContacts
-    onClickAddingBtn: (prop: any) => void
 }
 
 export const AddingTab = React.memo((props: IAddingTab) => {
     const ref = useRef(null)
     const classes = useStyles()
-    const {contact, onClickAddingBtn} = props
+    const {contact} = props
     const [newGroupVal, setNewGroupVal] = React.useState('')
     const {id, contactsList, contactsGroups} = props.contact
     const {isSm, isMd} = useMediaSize()
     useMouseEventAction({action: () => setNewGroupVal(''), ref})
-
+    const addNewGroup = useStore(state => state.addNewGroup)
     const handleTabInputChange = (e: ChangeEvent) => {
         // @ts-ignore
         let value = e.target?.value
@@ -28,40 +28,45 @@ export const AddingTab = React.memo((props: IAddingTab) => {
     }
 
     const handleClickAddingBtn = () => {
-        onClickAddingBtn(newGroupVal.trim().toLowerCase())
+        addNewGroup(id, newGroupVal.trim().toLowerCase())
         setNewGroupVal('')
     }
 
+    const handleClickOnInput = (e:any) => {
+        setNewGroupVal(` ${newGroupVal.trim()}`)
+    }
+
     const handleKeyPressAddingBtn = (e: React.KeyboardEvent<HTMLDivElement>) => {
-        if ( e.key === 'Enter') {
-            onClickAddingBtn(newGroupVal.trim().toLowerCase())
+        if (e.key === 'Enter') {
+            addNewGroup(id, newGroupVal.trim().toLowerCase())
             setNewGroupVal('')
             // @ts-ignore
-            ref.current !== null && ref.current.focus()
+            e.target.blur()
         }
     }
 
     return (
         <Tab
-            ref={ref}
             className={classes.addingTab}
-            onClick={() => setNewGroupVal(` ${newGroupVal.trim()}`)}
             label={
                 <>
                     <TextField
+                        ref={ref}
                         aria-pressed={true}
                         className={classes.tabInput}
                         type='text'
                         placeholder='Add group'
                         value={newGroupVal}
+                        onClick={handleClickOnInput}
                         onKeyPress={(e) => handleKeyPressAddingBtn(e)}
                         onChange={(e) => handleTabInputChange(e)}
 
+
                     />
-                    {newGroupVal && <AddingButton onClickAddingBtn={handleClickAddingBtn} />}
+                    {newGroupVal && <AddingButton onClickAddingBtn={handleClickAddingBtn}/>}
                 </>
             }
-            {...a11yProps(isSm, contactsGroups.length)}
+            {...a11yProps(isSm || isMd, contactsGroups.length)}
         />
     );
 })

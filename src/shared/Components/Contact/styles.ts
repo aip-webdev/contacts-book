@@ -1,10 +1,11 @@
 import {makeStyles} from "@mui/styles";
 import colors from "../../../utils/enums/colors";
-import theme from "../../../styles/theme";
+import theme from "../../../styles/main-theme";
+
 
 const useStyles = makeStyles({
     title: {
-        color: colors.pine08,
+        color: colors.mainFirst08,
         fontSize: '1rem !important',
         fontWeight: '600 !important',
         letterSpacing: '0.015em  !important',

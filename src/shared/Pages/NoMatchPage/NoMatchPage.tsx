@@ -7,10 +7,10 @@ export function NoMatchPage() {
     const classes = useStyles()
     return (
         <Container className={classes.container}>
-            <Typography variant='h2' component='h1' align='center'>
+            <Typography sx={{color: 'secondary.main'}} variant='h2' component='h1' align='center'>
                 PAGE NOT FOUND
                 <Typography variant='h6' component='p'>
-                    Go to the <Link to='/contacts'>your page</Link>
+                    Go to the <Link to='/home'>your page</Link>
                 </Typography>
             </Typography>
 
