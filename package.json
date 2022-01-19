@@ -14,7 +14,7 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.1.0",
@@ -49,9 +49,7 @@
     "webpack-dev-server": "^4.7.3",
     "webpack-node-externals": "^3.0.0",
     "webpack-notifier": "^1.15.0",
-    "zustand": "^3.6.9"
-  },
-  "dependencies": {
+    "zustand": "^3.6.9", 
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
     "fork-ts-checker-webpack-plugin": "^6.5.0",
     "react": "^17.0.2",
