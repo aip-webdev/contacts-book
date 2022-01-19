@@ -7,7 +7,7 @@ import {App} from '../App'
 import {indexTemplate} from './indexTemplate'
 import helmet from "helmet";
 
-const port = 3000 || 3003
+const PORT = process.env.PORT || 3003
 const app = express()
 const jsFiles = []
 
@@ -32,4 +32,4 @@ app.get('*', async (req, res) => {
         ))
 })
 
-app.listen(port, () => console.log(`Listening on port http://localhost:${port}`))
+app.listen(PORT, () => console.log(`Listening on port http://localhost:${PORT}`))
