@@ -10,7 +10,7 @@
     "watch": "webpack-dev-server --config webpack.client.js --hot --mode development",
     "dev": "webpack --config webpack.client.js --mode development",
     "build": "webpack --config webpack.client.js --mode production && webpack --config webpack.server.js --mode production",
-    "start": "SET PORT=3005 && node ./public/server/main.js"
+    "start": "process.env.PORT=3005 && node ./public/server/main.js"
   },
   "author": "",
   "license": "ISC",
